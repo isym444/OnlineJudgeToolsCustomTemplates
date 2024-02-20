@@ -171,22 +171,107 @@ void gen_primes() {
     }
 }
 
-
 vector<ll> parent; // To store parent information
 //visited nodes
 vector<bool> vis;
 //bool vis[61][61][61][61]={0};
 map<ll,ll> depth;
 
-//graph as adjacency list
+//initialize graph as adjacency list
 vector<vector<ll> > g;
+//initialize weighted graph as adjacency list
+vector<vector<pair<ll,ll>>> wg;
+//for building the adjacency list by adding edges info
+ll totalEdges = 0;
 void edge(ll originNode, ll destNode)
 {
     g[originNode].pb(destNode);
+    totalEdges++;
  
-    // for undirected graph e.g. tree, add this line
+    // for undirected graph e.g. tree, add this line:
     // g[destNode].pb(originNode);
 }
+
+void edge(ll originNode, ll destNode, ll weight){
+    wg[originNode].emplace_back(destNode, weight);
+    totalEdges++;
+    // For an undirected graph e.g., tree, add this line:
+    // g[destNode].emplace_back(originNode, weight);
+}
+
+//returns vector where each index is the shortest distance between the start node and node i
+vector<ll> dijkstra(ll start) {
+    vector<ll> dist(wg.size(), INF);  // Distance from start to each node
+    //arguments: 1) type of elements pq will store 2) underlying container to be used by pq 
+    //3) comparison function to specify order of elements in pq (default is less with largest element at top i.e. max-heap vs min-heap below)
+    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
+    dist[start] = 0;
+    pq.push({0, start});  // {distance, node}
+
+    while (!pq.empty()) {
+        //cerr << "pq" << pq << endl;
+        ll currentDist = pq.top().first;
+        ll currentNode = pq.top().second;
+        pq.pop();
+
+        // If the distance in priority queue is larger, we have already found a better path
+        if (currentDist > dist[currentNode]) {
+            continue;
+        }
+        /* Optimization to try if TLEing instead of if statement above
+        if (cdist != dist[node]) { continue; }*/
+    
+        for (auto &neighbor : wg[currentNode]) {
+            ll nextNode = neighbor.first;
+            ll weight = neighbor.second;
+            ll newDist = currentDist + weight;
+
+            if (newDist < dist[nextNode]) {
+                dist[nextNode] = newDist;
+                pq.push({newDist, nextNode});
+            }
+        }
+    }
+
+    return dist;
+}
+
+//Bellman Ford Graph: L node, R node, weight of edge between L&R
+vector<tuple<int, int, ll>> bfg;
+
+vector<ll> bellmanDistances;
+// Function to run Bellman-Ford algorithm given start node and # vertices, saves min distances in bellmanDistances vector
+bool bellmanFord(ll start, ll V) {
+    vector<ll> distance(V, INF);
+    bellmanDistances.resize(V, INF);
+    bellmanDistances[start] = 0;
+    ll a,b,w;
+    for (ll i = 1; i <= V - 1; i++) {
+        for (const auto& e : bfg) {
+            tie(a, b, w) = e;
+            bellmanDistances[b]=min(bellmanDistances[b],bellmanDistances[a]+w);
+            /* if (bellmanDistances[a] + w < bellmanDistances[b]) {
+                bellmanDistances[b] = bellmanDistances[a] + w;
+            } */
+        }
+    }
+
+    // Check for negative-weight cycles (negative sum of edges in a cycle)
+    for (const auto& e : bfg) {
+        tie(a, b, w) = e;
+        if (bellmanDistances[a] + w < bellmanDistances[b]) {
+            cout << "Graph contains negative weight cycle" << endl;
+            return false;
+        }
+    }
+
+/*     // Print the distances
+    for (int i = 0; i < V; i++)
+        cout << "Distance from " << start << " to " << i << " is " << (distance[i] == INF ? "INF" : to_string(distance[i])) << endl;
+ */
+    return true;
+}
+
 
 //traverse a graph using bfs from the specified start node to all other nodes, in the process printing the order the nodes are visited in
 void bfs(ll start)
@@ -217,6 +302,28 @@ void bfs(ll start)
             cerr << "depths to leafs: " << depth[f] << endl;
         } */
     }
+}
+
+//bfs function returning vector with the shortest paths from start node to every other node
+vector<ll> bfs_shortest_paths(ll start) {
+    vector<long long> distances(g.size()+1, -1);
+    queue<int> q;
+
+    distances[start] = 0;
+    q.push(start);
+
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+
+        for (int neighbor : g[node]) {
+            if (distances[neighbor] == -1) {
+                distances[neighbor] = distances[node] + 1;
+                q.push(neighbor);
+            }
+        }
+    }
+    return distances;
 }
 
 //return a vector containing bfs path from start to end nodes specified
@@ -391,7 +498,10 @@ public:
 % else:
 <% solve_function = "solve" %>\
 ${cplusplus.return_type(data)} solve(${cplusplus.formal_arguments(data)}) {
-    
+    /* vis.assign(n+1, false);
+    g.assign(n+1, vector<int>());
+    wg.assign(n + 1, vector<pair<ll,ll>>());
+    parent.assign(n+1, -1); */
 }
 % endif
 
@@ -402,9 +512,6 @@ int main() {
 ${cplusplus.read_input(data)}
     auto ${cplusplus.return_value(data)} = ${solve_function}(${cplusplus.actual_arguments(data)});
 ${cplusplus.write_output(data)}
-    vis.assign(n+1, false);
-    g.assign(n+1, vector<int>());
-    parent.assign(n+1, -1);
 
     /* genprimes(1e5); */
 
@@ -415,7 +522,7 @@ ${cplusplus.write_output(data)}
     }
     
     //Use for problems where you have to go up,down,left,right. Do x+i & y+j and i&j will test all 4 directions. Do x+i+1 & y+j+1 if 0 indexed
-    /* wasd(
+    wasd(
         //cout << "Use this for problems where you have to go up, down, left right" << endl;
     ) */
     return 0;
