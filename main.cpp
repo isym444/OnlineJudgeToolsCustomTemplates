@@ -81,6 +81,9 @@ using namespace std;
 #define binstoi(binaryStringToConvertToInt) stoi(binaryStringToConvertToInt, nullptr, 2)
 #define vecsum(vectorName) accumulate((vectorName).begin(), (vectorName).end(), 0)
 #define setbits(decimalnumber) __builtin_popcount(decimalnumber)
+#define stringSplice(str, i, j) (str).erase(i, j) //j is the length of string to erase starting from index i
+#define string_pop_back(str) (str).pop_back()
+#define substring(str, i, j) (str).substr(i, j) //j is the length of substring from i
 
 typedef pair<ll, ll> pl;
 
