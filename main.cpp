@@ -36,6 +36,7 @@
             "#include <bitset>",
             "#include <deque>",
             "#include <numeric>",
+            "#include <assert.h>",
         ])
     if not shutil.which("clang-format"):
         logger.warning("clang-format is not installed. If you want to generate well-formatted code, please install it. If you use Ubuntu, you can run $ sudo apt install clang-format")
@@ -389,6 +390,76 @@ void dfsSubtrees(ll startNode){
         minSubtreeSize=min(minSubtreeSize,subtreeSizes[adjNode]);
     }
 }
+
+
+//disjoint set union/union find
+struct dsu {
+  public:
+    dsu() : _n(0) {}
+    //constructor for dsu. Initialize as "dsu name_of_object(x);"
+    //creates an undirected graph with n vertices and 0 edges
+    //N.b. if initializing for HxW grid then = HxW
+    explicit dsu(int n) : _n(n), parent_or_size(n, -1) {}
+
+    //returns representative of component if a&b already in component or else joins them into a new component and selects one as representative
+    int merge(int a, int b) {
+        assert(0 <= a && a < _n);
+        assert(0 <= b && b < _n);
+        int x = leader(a), y = leader(b);
+        if (x == y) return x;
+        if (-parent_or_size[x] < -parent_or_size[y]) std::swap(x, y);
+        parent_or_size[x] += parent_or_size[y];
+        parent_or_size[y] = x;
+        return x;
+    }
+
+    //returns whether a&b in same component
+    //N.b. if for HxW grid then have to convert ij 2d coordinate to 1d representation:
+    //v = i*W+j
+    bool same(int a, int b) {
+        assert(0 <= a && a < _n);
+        assert(0 <= b && b < _n);
+        return leader(a) == leader(b);
+    }
+
+    //returns representative of connected component in which a resides
+    int leader(int a) {
+        assert(0 <= a && a < _n);
+        if (parent_or_size[a] < 0) return a;
+        return parent_or_size[a] = leader(parent_or_size[a]);
+    }
+
+    //returns size of connected component in which a resides
+    int size(int a) {
+        assert(0 <= a && a < _n);
+        return -parent_or_size[leader(a)];
+    }
+
+    //returns a list of the nodes of each connected component
+    std::vector<std::vector<int>> groups() {
+        std::vector<int> leader_buf(_n), group_size(_n);
+        for (int i = 0; i < _n; i++) {
+            leader_buf[i] = leader(i);
+            group_size[leader_buf[i]]++;
+        }
+        std::vector<std::vector<int>> result(_n);
+        for (int i = 0; i < _n; i++) {
+            result[i].reserve(group_size[i]);
+        }
+        for (int i = 0; i < _n; i++) {
+            result[leader_buf[i]].push_back(i);
+        }
+        result.erase(
+            std::remove_if(result.begin(), result.end(),[&](const std::vector<int>& v) { return v.empty(); }),result.end());
+        return result;
+    }
+
+  private:
+    int _n;
+    // root node: -1 * component size
+    // otherwise: parent
+    std::vector<int> parent_or_size;
+};
 
 string itobins(int n) {
     if (n == 0) return "0";
