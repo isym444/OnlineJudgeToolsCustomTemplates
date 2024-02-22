@@ -65,6 +65,7 @@ using namespace std;
 #define foj(from,non_incl_to) for(int j=from;j<non_incl_to;j++)
 #define fok(from,non_incl_to) for(int k=from;k<non_incl_to;k++)
 #define wasd(x) foi(-1,2) foj(-1,2) if(abs(i)+abs(j)==1){x};
+#define qweasdzxc(x) foi(-1,2) foj(-1,2) if(abs(i)+abs(j)==1){x};
 #define isvalid(x_plus_i,max_boundary_n,y_plus_j,max_boundary_m) (0<=x_plus_i and x_plus_i<max_boundary_n and 0<=y_plus_j and y_plus_j<max_boundary_m)
 //#define gcd __gcd
 #define mp make_pair
