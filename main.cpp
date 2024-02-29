@@ -595,15 +595,15 @@ string dtobx(int decimalNumber, int base) {
 
 template<typename T, typename U>
 auto ceildiv(T n, U d) -> decltype(n / d + 0) {
-static_assert(std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, "ceildiv requires arithmetic types");
+    static_assert(std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, "ceildiv requires arithmetic types");
 
-if constexpr (std::is_floating_point<T>::value || std::is_floating_point<U>::value) {
-    // Handle case where either n or d is a floating-point number
-    return static_cast<decltype(n / d + 0)>(std::ceil(n / static_cast<double>(d)));
-} else {
-    // Handle case where both n and d are integers
-    return (n + d - 1) / d;
-}
+    if constexpr (std::is_floating_point<T>::value || std::is_floating_point<U>::value) {
+        // Handle case where either n or d is a floating-point number
+        return static_cast<decltype(n / d + 0)>(std::ceil(n / static_cast<double>(d)));
+    } else {
+        // Handle case where both n and d are integers
+        return (n + d - 1) / d;
+    }
 }
 
 /* ll ceildiv(ll n, ll d){
@@ -722,6 +722,42 @@ ll lcs(string s, string t){
         }
     }
     return dp[s.size()][t.size()];
+}
+
+// Helper function to convert a number to a vector of its digits
+std::vector<ll> numberToVector(ll number) {
+    std::vector<ll> digits;
+    while (number > 0) {
+        digits.push_back(number % 10);
+        number /= 10;
+    }
+    std::reverse(digits.begin(), digits.end());
+    return digits;
+}
+
+// Helper function to convert a vector of digits back to a number
+ll vectorToNumber(const std::vector<ll>& digits) {
+    ll number = 0;
+    for (ll digit : digits) {
+        number = number * 10 + digit;
+    }
+    return number;
+}
+
+//checks whether vec1 is lexicographically smaller than vec2
+bool isLexicographicallySmaller(const std::vector<long long>& vec1, const std::vector<long long>& vec2) {
+    return std::lexicographical_compare(vec1.begin(), vec1.end(), vec2.begin(), vec2.end());
+}
+
+// cout all permutations of a vector<ll> in lexicographic order
+void lexperm(vector<ll> vec){
+    while (std::next_permutation(vec.begin(), vec.end())){
+        // Print the current permutation
+        for (ll num : vec) {
+            std::cout << num << " ";
+        }
+        std::cout << "\n";
+    }
 }
 
 //Graph visualizer:
