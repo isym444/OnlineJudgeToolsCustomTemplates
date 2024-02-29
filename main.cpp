@@ -94,7 +94,7 @@ typedef pair<ll, ll> pl;
 
 #define pb push_back
 
-ll mod=1e9+7,INF=1e18;
+ll INF=1e18;
 
 
 /*/---------------------------IO(Debugging)----------------------/*/
@@ -236,7 +236,7 @@ std::unordered_map<int, int> fact(int x) {
     return pfactors;
 }
 
-ll mod=1e9+7
+ll mod=1e9+7;
 //ll mod=1000;
 //modular exponentiation: calculates a^b mod c where a^b is a crazy big number and would usually overflow. Change mod above as needed
 ll mpow(ll base, ll exp)
@@ -513,6 +513,7 @@ struct dsu {
     explicit dsu(int n) : _n(n), parent_or_size(n, -1) {}
 
     //returns representative of component if a&b already in component or else joins them into a new component and selects one as representative
+    //don't forget nodes are 0 indexed!!!!!!!!!!!! so if edge in problem connects node 1&2 where nodes are 1 indexed in problem, do --
     int merge(int a, int b) {
         assert(0 <= a && a < _n);
         assert(0 <= b && b < _n);
