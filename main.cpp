@@ -91,6 +91,8 @@ using namespace std;
 #define substring(str, i, j) (str).substr(i, j) //j is the length of substring from i
 
 typedef pair<ll, ll> pl;
+typedef vector<long long> vll;
+typedef std::vector<std::vector<long long>> vvll;
 
 #define pb push_back
 
@@ -675,6 +677,7 @@ ll findGreaterEqual(vector<ll> sortedVector, ll target){
 //returns index of first element less than or equal to target
 //if all elements are greater than target returns -1
 //if all elements are smaller than target, returns last element
+//h N.B. gives 1-based index
 ll findLessEqual(vector<ll> sortedVector, ll target){
     auto it = upper_bound(sortedVector.begin(), sortedVector.end(), target);
     if(it != sortedVector.begin()){
@@ -776,6 +779,41 @@ void lexperm(vector<ll> vec){
         }
         std::cout << "\n";
     }
+}
+
+bool isPalindrome(const std::string& s) {
+    int start = 0;
+    int end = s.length() - 1;
+
+    while(start < end) {
+        // Skip non-alphanumeric characters
+        while(start < end && !isalnum(s[start])) start++;
+        while(start < end && !isalnum(s[end])) end--;
+
+        // Check for palindrome, ignoring case
+        if(tolower(s[start]) != tolower(s[end])) {
+            return false;
+        }
+
+        start++;
+        end--;
+    }
+
+    return true;
+}
+
+bool isPalindrome(long long n) {
+    if (n < 0) return false; // Negative numbers are not considered palindromes
+
+    long long reversed = 0, original = n, remainder;
+
+    while (n != 0) {
+        remainder = n % 10;
+        reversed = reversed * 10 + remainder;
+        n /= 10;
+    }
+
+    return original == reversed;
 }
 
 //Graph visualizer:
