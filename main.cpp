@@ -65,12 +65,12 @@ using namespace std;
 #define sz(x) (int)(x).size()
 #define fo(from_0_to_non_incl_to) for(int i=0;i<from_0_to_non_incl_to;i++)
 //h CAREFUL if you put an expression as an argument it will give bugs, better assign expression to variable then put that in the foi() as argument
-#define foi(from,non_incl_to) for(int i=from;i<non_incl_to;i++)
-#define foii(non_incl_to) for(int i=0;i<non_incl_to;i++)
-#define foj(from,non_incl_to) for(int j=from;j<non_incl_to;j++)
-#define fojj(non_incl_to) for(int j=0;j<non_incl_to;j++)
-#define fok(from,non_incl_to) for(int k=from;k<non_incl_to;k++)
-#define fokk(non_incl_to) for(int k=0;k<non_incl_to;k++)
+#define foi(from,non_incl_to) for(int i=from;i<(non_incl_to);i++)
+#define foii(non_incl_to) for(int i=0;i<(non_incl_to);i++)
+#define foj(from,non_incl_to) for(int j=from;j<(non_incl_to);j++)
+#define fojj(non_incl_to) for(int j=0;j<(non_incl_to);j++)
+#define fok(from,non_incl_to) for(int k=from;k<(non_incl_to);k++)
+#define fokk(non_incl_to) for(int k=0;k<(non_incl_to);k++)
 #define fa(x, dataStructure) for(auto x : dataStructure)
 #define fx(dataStructure) for(auto x : dataStructure)
 #define wasd(x) foi(-1,2) foj(-1,2) if(abs(i)+abs(j)==1){x};
