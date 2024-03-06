@@ -705,6 +705,7 @@ struct loc
     loc(ll x, ll y, char c) : x(x), y(y), dir(c) {}
     //loc::x to access or modify x
     //initialize using loc locobj(1,2,'r')
+    //if don't want to use constructor, can initialize using loc locobj = {1, 2, 'n'};
 };
 
 /* sorting vector<loc> locvector by y first then x
