@@ -828,6 +828,12 @@ bool isPalindrome(long long n) {
 //min heap priority queue i.e. top() gives smallest value
 //priority_queue <ll, vector<ll>, greater<ll>> d;
 
+//for iterating over possible directions from a square in a 2d array -> for both wasd & including diagonals
+vector<int> dx = {1, 0, -1, 0, 1, 1, -1, -1};
+vector<int> dx_wasd = {1,-1,0,0};
+vector<int> dy = {0, 1, 0, -1, 1, -1, 1, -1};
+vector<int> dy_wasd = {0,0,1,-1};
+
 //Graph visualizer:
 //https://csacademy.com/app/graph_editor/
 
