@@ -99,8 +99,6 @@ using namespace std;
 typedef pair<ll, ll> pl;
 typedef vector<long long> vll;
 typedef std::vector<std::vector<long long>> vvll;
-typedef priority_queue<ll> maxpq;
-typedef priority_queue<ll, vector<ll>, greater<ll>> minpq;
 
 #define pb push_back
 
@@ -825,10 +823,22 @@ bool isPalindrome(long long n) {
     return original == reversed;
 }
 
-//max heap priority queue i.e. top() gives largest value. push/pop O(log n). size = O(1)
-//priority_queue<ll> d;
+//max heap priority queue i.e. top() gives largest value
+typedef priority_queue<ll> maxpq;
 //min heap priority queue i.e. top() gives smallest value
-//priority_queue <ll, vector<ll>, greater<ll>> d;
+typedef priority_queue<ll, vector<ll>, greater<ll>> minpq;
+
+//.count(x) O(num_of_x+logN)
+//.find(x) O(logN) -> so use find over count if possible
+//.insert(x) O(logN) -> inserts s.t. sorted order is maintained
+//.erase(x) O(logN)
+//begin() O(logN)
+typedef multiset<ll> msll;
+//doing mymultiset.erase(x) will erase all
+#define mserasesingle(mymultiset, x) mymultiset.erase(mymultiset.find(x))
+#define mseraseall(mymultiset, x) mymultiset.erase(x)
+#define msmin(mymultiset) *mymultiset.begin()
+#define msmax(mymultiset) *mymultiset.rbegin()
 
 //for iterating over possible directions from a square in a 2d array -> for both wasd & including diagonals
 vector<int> dx = {1, 0, -1, 0, 1, 1, -1, -1};
