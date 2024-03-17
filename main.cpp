@@ -99,6 +99,8 @@ using namespace std;
 typedef pair<ll, ll> pl;
 typedef vector<long long> vll;
 typedef std::vector<std::vector<long long>> vvll;
+typedef priority_queue<ll> maxpq;
+typedef priority_queue<ll, vector<ll>, greater<ll>> minpq;
 
 #define pb push_back
 
@@ -823,7 +825,7 @@ bool isPalindrome(long long n) {
     return original == reversed;
 }
 
-//max heap priority queue i.e. top() gives largest value
+//max heap priority queue i.e. top() gives largest value. push/pop O(log n). size = O(1)
 //priority_queue<ll> d;
 //min heap priority queue i.e. top() gives smallest value
 //priority_queue <ll, vector<ll>, greater<ll>> d;
