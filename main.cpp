@@ -837,6 +837,7 @@ typedef multiset<ll> msll;
 //doing mymultiset.erase(x) will erase all
 #define mserasesingle(mymultiset, x) mymultiset.erase(mymultiset.find(x))
 #define mseraseall(mymultiset, x) mymultiset.erase(x)
+//find smallest and biggest elements O(1)
 #define msmin(mymultiset) *mymultiset.begin()
 #define msmax(mymultiset) *mymultiset.rbegin()
 
