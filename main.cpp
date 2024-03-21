@@ -977,6 +977,21 @@ typedef multiset<ll> msll;
 #define msmin(mymultiset) *mymultiset.begin()
 #define msmax(mymultiset) *mymultiset.rbegin()
 
+
+int digit_to_int(char c) { return c - '0'; }
+int lowercase_to_int(char c) { return c - 'a'; }
+int uppercase_to_int(char c) { return c - 'A'; }
+
+std::vector<int> digit_str_to_ints(const std::string &s) {
+    return transform_to_vector(digit_to_int, s);
+}
+std::vector<int> lowercase_str_to_ints(const std::string &s) {
+    return transform_to_vector(lowercase_to_int, s);
+}
+std::vector<int> uppercase_str_to_ints(const std::string &s) {
+    return transform_to_vector(uppercase_to_int, s);
+}
+
 //for iterating over possible directions from a square in a 2d array -> for both wasd & including diagonals
 vector<int> dx = {1, 0, -1, 0, 1, 1, -1, -1};
 vector<int> dx_wasd = {1,-1,0,0};
