@@ -977,21 +977,6 @@ typedef multiset<ll> msll;
 #define msmin(mymultiset) *mymultiset.begin()
 #define msmax(mymultiset) *mymultiset.rbegin()
 
-emplate <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-std::vector<T> digits_low_to_high(T val, T base = 10) {
-    std::vector<T> res;
-    for (; val; val /= base) res.push_back(val % base);
-    if (res.empty()) res.push_back(T{ 0 });
-    return res;
-}
-template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-std::vector<T> digits_high_to_low(T val, T base = 10) {
-    auto res = digits_low_to_high(val, base);
-    std::reverse(res.begin(), res.end());
-    return res;
-}
-
-
 int digit_to_int(char c) { return c - '0'; }
 int lowercase_to_int(char c) { return c - 'a'; }
 int uppercase_to_int(char c) { return c - 'A'; }
