@@ -977,11 +977,44 @@ typedef multiset<ll> msll;
 #define msmin(mymultiset) *mymultiset.begin()
 #define msmax(mymultiset) *mymultiset.rbegin()
 
+emplate <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+std::vector<T> digits_low_to_high(T val, T base = 10) {
+    std::vector<T> res;
+    for (; val; val /= base) res.push_back(val % base);
+    if (res.empty()) res.push_back(T{ 0 });
+    return res;
+}
+template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+std::vector<T> digits_high_to_low(T val, T base = 10) {
+    auto res = digits_low_to_high(val, base);
+    std::reverse(res.begin(), res.end());
+    return res;
+}
+
 
 int digit_to_int(char c) { return c - '0'; }
 int lowercase_to_int(char c) { return c - 'a'; }
 int uppercase_to_int(char c) { return c - 'A'; }
 
+
+template <typename Func, typename Seq>
+auto transform_to_vector(const Func &f, const Seq &s) {
+    std::vector<std::invoke_result_t<Func, typename Seq::value_type>> v;
+    v.reserve(std::size(s)), std::transform(std::begin(s), std::end(s), std::back_inserter(v), f);
+    return v;
+}
+template <typename T, typename Seq>
+auto copy_to_vector(const Seq &s) {
+    std::vector<T> v;
+    v.reserve(std::size(s)), std::copy(std::begin(s), std::end(s), std::back_inserter(v));
+    return v;
+}
+template <typename Seq>
+Seq concat(Seq s, const Seq &t) {
+    s.reserve(std::size(s) + std::size(t));
+    std::copy(std::begin(t), std::end(t), std::back_inserter(s));
+    return s;
+}
 std::vector<int> digit_str_to_ints(const std::string &s) {
     return transform_to_vector(digit_to_int, s);
 }
@@ -991,8 +1024,7 @@ std::vector<int> lowercase_str_to_ints(const std::string &s) {
 std::vector<int> uppercase_str_to_ints(const std::string &s) {
     return transform_to_vector(uppercase_to_int, s);
 }
-
-//if give "hello,world,this,test" to function will return ['hello','world','this','tes't]
+template <typename Seq>
 std::vector<Seq> split(const Seq s, typename Seq::value_type delim) {
     std::vector<Seq> res;
     for (auto itl = std::begin(s), itr = itl;; itl = ++itr) {
@@ -1001,6 +1033,11 @@ std::vector<Seq> split(const Seq s, typename Seq::value_type delim) {
         if (itr == std::end(s)) return res;
     }
 }
+// Overload of split function to handle C-style strings
+std::vector<std::string> split(const char* s, char delim) {
+    return split(std::string(s), delim);
+}
+
 
 //for iterating over possible directions from a square in a 2d array -> for both wasd & including diagonals
 vector<int> dx = {1, 0, -1, 0, 1, 1, -1, -1};
