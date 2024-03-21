@@ -515,7 +515,7 @@ void dfsSubtrees(ll startNode){
 struct dsu {
   public:
     dsu() : _n(0) {}
-    //constructor for dsu. Initialize as "dsu name_of_object(x);"
+    //constructor for dsu. Initialize as "dsu name_of_object(n);"
     //creates an undirected graph with n vertices and 0 edges
     //N.b. if initializing for HxW grid then = HxW
     explicit dsu(int n) : _n(n), parent_or_size(n, -1) {}
