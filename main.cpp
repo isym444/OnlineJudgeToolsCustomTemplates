@@ -512,6 +512,7 @@ void dfsSubtrees(ll startNode){
 
 
 //disjoint set union/union find
+//consider using coordinate compression!
 struct dsu {
   public:
     dsu() : _n(0) {}
