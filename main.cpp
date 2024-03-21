@@ -992,6 +992,16 @@ std::vector<int> uppercase_str_to_ints(const std::string &s) {
     return transform_to_vector(uppercase_to_int, s);
 }
 
+//if give "hello,world,this,test" to function will return ['hello','world','this','tes't]
+std::vector<Seq> split(const Seq s, typename Seq::value_type delim) {
+    std::vector<Seq> res;
+    for (auto itl = std::begin(s), itr = itl;; itl = ++itr) {
+        while (itr != std::end(s) and *itr != delim) ++itr;
+        res.emplace_back(itl, itr);
+        if (itr == std::end(s)) return res;
+    }
+}
+
 //for iterating over possible directions from a square in a 2d array -> for both wasd & including diagonals
 vector<int> dx = {1, 0, -1, 0, 1, 1, -1, -1};
 vector<int> dx_wasd = {1,-1,0,0};
