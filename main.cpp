@@ -945,6 +945,8 @@ typedef priority_queue<ll> maxpq;
 //min heap priority queue i.e. top() gives smallest value
 typedef priority_queue<ll, vector<ll>, greater<ll>> minpq;
 
+//multiset provides automatic ordering on insertion but unlike set, keeps duplicate/multiple items of same value
+//n.b. set also provides autoamtic ordering on insertion
 //.count(x) O(num_of_x+logN)
 //.find(x) O(logN) -> so use find over count if possible
 //.insert(x) O(logN) -> inserts s.t. sorted order is maintained
