@@ -880,6 +880,7 @@ std::vector<ll> numberToVector(ll number) {
     return digits;
 }
 
+// 8120 becomes [0 1 2 8]
 template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
 std::vector<T> digits_low_to_high(T val, T base = 10) {
     std::vector<T> res;
@@ -887,6 +888,8 @@ std::vector<T> digits_low_to_high(T val, T base = 10) {
     if (res.empty()) res.push_back(T{ 0 });
     return res;
 }
+
+// 8120 becomes [8 1 2 0]
 template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
 std::vector<T> digits_high_to_low(T val, T base = 10) {
     auto res = digits_low_to_high(val, base);
