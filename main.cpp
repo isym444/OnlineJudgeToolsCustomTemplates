@@ -880,6 +880,20 @@ std::vector<ll> numberToVector(ll number) {
     return digits;
 }
 
+template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+std::vector<T> digits_low_to_high(T val, T base = 10) {
+    std::vector<T> res;
+    for (; val; val /= base) res.push_back(val % base);
+    if (res.empty()) res.push_back(T{ 0 });
+    return res;
+}
+template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+std::vector<T> digits_high_to_low(T val, T base = 10) {
+    auto res = digits_low_to_high(val, base);
+    std::reverse(res.begin(), res.end());
+    return res;
+}
+
 // Helper function to convert a vector of digits back to a number
 ll vectorToNumber(const std::vector<ll>& digits) {
     ll number = 0;
