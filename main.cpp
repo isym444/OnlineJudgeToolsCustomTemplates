@@ -95,6 +95,8 @@ using namespace std;
 #define stringSplice(str, i, j) (str).erase(i, j) //j is the length of string to erase starting from index i
 #define string_pop_back(str) (str).pop_back()
 #define substring(str, i, j) (str).substr(i, j) //j is the length of substring from i
+#define rng(a) a.begin(),a.end()
+#define all(a) a.begin(),a.end()
 
 typedef pair<ll, ll> pl;
 typedef vector<long long> vll;
