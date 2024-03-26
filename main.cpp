@@ -1276,16 +1276,22 @@ struct lazy_segtree {
     }
 };
 
+//h S represents a node in the tree i.e. a segment in the original array
 // struct S {
 //     int upper, lower;
 // };
 
 // using F = int;
 
+//h defines how to merge 2 segments of the tree to build up the tree & to query a range
 // S op(S l, S r) { return S{l.upper + r.upper, l.lower + r.lower}; }
 
+//h identity element for operation that combines segments
+//h segment that doesn't change anything when combined with another segment "identity element". Needed for things like initialization or when updating bits of segment tree that don't need to be changed
+//h e comes from German Einheit = unit/unity i.e. unifying/neutral element
 // S e() { return S{0, 0}; }
 
+//h defines how a function/operation is applied to a segment
 // S mapping(F l, S r) {
 //     if(l == 0) {
 //         return r;
@@ -1296,8 +1302,10 @@ struct lazy_segtree {
 //     }
 // }
 
+//h defines how to combine 2 updates into one
 // F composition(F l, F r) { return l ? l : r; }
 
+//h identity element for operation that updates elements
 // F id() { return 0; }
 
 // int main() {
