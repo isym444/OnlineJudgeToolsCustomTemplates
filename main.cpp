@@ -80,7 +80,7 @@ using namespace std;
 #define mp make_pair
 //Makes % get floor remainder (towards -INF) and make it always positive
 #define MOD(x,y) (x%y+y)%y
-#define print(p) cout<<p<<endl
+// #define print(p) cout<<p<<endl
 #define fi first
 #define sec second
 #define prmap(m) {for(auto i: m) cout<<(i.fi)<<i.sec<<endl}
@@ -1476,6 +1476,49 @@ template <class S, S (*op)(S, S), S (*e)()> struct segtree {
     void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }
 };
 
+
+template <class T> struct BIT {
+    T UNITY_SUM = 0;
+    vector<T> dat;
+    
+    // [0, n)
+    // Declare BIT (N elements initialized to 0) by doing:
+    // BIT< long  long > bit (N);
+    // fenwick tree is held in a vector<T> called dat
+    BIT(int n, T unity = 0) : UNITY_SUM(unity), dat(n, unity) { }
+    
+    //allows reinitialization of the tree resetting all elements to unity sum
+    void init(int n) {
+        dat.assign(n, UNITY_SUM);
+    }
+    
+    // a is 0-indexed
+    // use add to add 'x' to array items at index 'a' in Fenwick tree
+    inline void add(int a, T x) {
+        for (int i = a; i < (int)dat.size(); i |= i + 1)
+            dat[i] = dat[i] + x;
+    }
+    
+    // Get sum over range [0, a), where a is 0-indexed
+    inline T sum(int a) {
+        T res = UNITY_SUM;
+        for (int i = a - 1; i >= 0; i = (i & (i + 1)) - 1)
+            res = res + dat[i];
+        return res;
+    }
+    
+    // Get sum over range [a, b), where a and b are 0-indexed
+    inline T sum(int a, int b) {
+        return sum(b) - sum(a);
+    }
+    
+    // debug
+    void print() {
+        for (int i = 0; i < (int)dat.size(); ++i)
+            cerr << sum(i, i + 1) << ",";
+        cerr << endl;
+    }
+};
 
 //for iterating over possible directions from a square in a 2d array -> for both wasd & including diagonals
 vector<int> dx = {1, 0, -1, 0, 1, 1, -1, -1};
