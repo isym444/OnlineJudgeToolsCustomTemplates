@@ -1620,7 +1620,13 @@ template <class T> struct BIT {
     }
     
     // a is 0-indexed
-    // use add to add 'x' to array items at index 'a' in Fenwick tree
+    // use add to add array item 'x' to index 'a' in Fenwick tree
+    // n.b. index 'a' in Fenwick tree represents a range of responsibility
+    // i.e. holds a prefix sum for a particular range of original array
+    // this range of responsibility is determined by index 'a's binary representation
+    // it is responsible for E elements below it
+    // where E is the index of its LSB where index is from R->L of binary number
+    // e.g. 11010 LSB index is 2
     inline void add(int a, T x) {
         for (int i = a; i < (int)dat.size(); i |= i + 1)
             dat[i] = dat[i] + x;
@@ -1640,6 +1646,7 @@ template <class T> struct BIT {
     }
     
     // debug
+    // prints the values of original array after modifications
     void print() {
         for (int i = 0; i < (int)dat.size(); ++i)
             cerr << sum(i, i + 1) << ",";
