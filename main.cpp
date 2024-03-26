@@ -1572,9 +1572,20 @@ template <class T> struct fenwick_tree {
     using U = internal::to_unsigned_t<T>;
 
   public:
+    // Declare fenwick_tree (N elements initialized to 0) by doing:
+    // fenwick_tree< long  long > ft (N);
+    // fenwick tree is held in a vector<T> called data
     fenwick_tree() : _n(0) {}
     explicit fenwick_tree(int n) : _n(n), data(n) {}
 
+    // a is 0-indexed
+    // use add to add array item 'x' to index 'a' in Fenwick tree
+    // n.b. index 'a' in Fenwick tree represents a range of responsibility
+    // i.e. holds a prefix sum for a particular range of original array
+    // this range of responsibility is determined by index 'a's binary representation
+    // it is responsible for E elements below it
+    // where E is the index of its LSB where index is from R->L of binary number
+    // e.g. 11010 LSB index is 2
     void add(int p, T x) {
         assert(0 <= p && p < _n);
         p++;
@@ -1584,6 +1595,7 @@ template <class T> struct fenwick_tree {
         }
     }
 
+    // Get sum over range [l, r), where l is 0-indexed
     T sum(int l, int r) {
         assert(0 <= l && l <= r && r <= _n);
         return sum(r) - sum(l);
@@ -1604,6 +1616,7 @@ template <class T> struct fenwick_tree {
 };
 
 
+//Use fenwick_tree above instead
 template <class T> struct BIT {
     T UNITY_SUM = 0;
     vector<T> dat;
