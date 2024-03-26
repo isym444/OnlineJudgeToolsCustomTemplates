@@ -1352,7 +1352,17 @@ template <class S, auto op, auto e> struct segtree {
 #else
 
 template <class S, S (*op)(S, S), S (*e)()> struct segtree {
-
+//initialize as follows:
+// struct S {
+//     int a;
+// };
+// S op(S l, S r){
+//     return S{max(l.a,r.a)};
+// }
+// S e(){
+//     return S{-1};
+// }
+// segtree<S, op, e> mysegtree(a);
 #endif
 
   public:
@@ -1403,7 +1413,10 @@ template <class S, S (*op)(S, S), S (*e)()> struct segtree {
     template <bool (*f)(S)> int max_right(int l) const {
         return max_right(l, [](S x) { return f(x); });
     }
-    //binary search n.b. can use lambda for f e.g.:
+    //binary search. Initially considers aggregate of segment from l to end of array
+    //looks for FIRST/leftmost index r where condition given by f transitions from true to false
+    //i.e. returns left-most index where condition false
+    //n.b. can use lambda for f e.g.:
     //cout << mysegtree.max_right(x,[&](S b){return b.a<v;})+1<<endl;
     template <class F> int max_right(int l, F f) const {
         assert(0 <= l && l <= _n);
