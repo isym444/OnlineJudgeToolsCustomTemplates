@@ -492,6 +492,7 @@ void dddfs(ll startNode, ll startDepth){
 
 //weighted undirected graph 全探索 to find max Hamiltonian path cost
 //https://atcoder.jp/contests/abc317/submissions/51739795
+ll ans;
 void ddddfs(ll v, vector<bool> vis, ll cost){
     ans = max(ans,cost);
     for(auto x:wg[v]){
