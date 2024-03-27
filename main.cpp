@@ -480,13 +480,26 @@ vector<ll> bfs(ll start, ll end) {
 
 //dfs traversal from start node, in process keeping track of max depth & keeping track of each node's depth & printing order of traversal
 ll maxDepth = 0;
-void dfs(ll startNode, ll startDepth){
+void dddfs(ll startNode, ll startDepth){
     vis[startNode] = true;
     depth[startNode]=startDepth;
     maxDepth=max(maxDepth, startDepth);
     cerr << startNode << " ";
     for(auto adjNode : g[startNode]){
-        if(!vis[adjNode]) dfs(adjNode, startDepth+1);
+        if(!vis[adjNode]) dddfs(adjNode, startDepth+1);
+    }
+}
+
+//weighted undirected graph 全探索 to find max Hamiltonian path cost
+//https://atcoder.jp/contests/abc317/submissions/51739795
+void ddddfs(ll v, vector<bool> vis, ll cost){
+    ans = max(ans,cost);
+    for(auto x:wg[v]){
+        if(!vis[x.first]){
+            vis[x.first]=true;
+            ddddfs(x.first, vis, cost+x.second);
+            vis[x.first]=false;
+        }
     }
 }
 
