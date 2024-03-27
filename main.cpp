@@ -318,7 +318,7 @@ void edge(ll originNode, ll destNode, ll weight){
     wg[originNode].emplace_back(destNode, weight);
     totalEdges++;
     // For an undirected graph e.g., tree, add this line:
-    // g[destNode].emplace_back(originNode, weight);
+    // wg[destNode].emplace_back(originNode, weight);
 }
 
 //returns vector where each index is the shortest distance between the start node and node i
