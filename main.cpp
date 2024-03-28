@@ -526,6 +526,35 @@ void dfsSubtrees(ll startNode){
     }
 }
 
+vector<vector<ll> >ddist;
+
+void floydWarshall(ll n) {
+    // Step 1: Initialization
+    ddist.assign(n, vector<ll>(n, INF));
+    for (int i = 0; i < n; i++) {
+        ddist[i][i] = 0;
+    }
+
+    // Step 2: Populate the adjacency matrix
+    for (int u = 0; u < n; u++) {
+        for (int i = 0; i < g[u].size(); i++) {
+            ll v = g[u][i];
+            ddist[u][v] = 1; // Assuming unweighted graph, set weight to 1
+            // For a weighted graph, you'd set this to the weight of the edge u->v
+        }
+    }
+
+    // Step 3: Floyd-Warshall Algorithm
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (ddist[i][k] < INF &&ddist[k][j] < INF) {
+                    ddist[i][j] = min(ddist[i][j],ddist[i][k] +ddist[k][j]);
+                }
+            }
+        }
+    }
+}
 
 //disjoint set union/union find
 //consider using coordinate compression!
@@ -1702,7 +1731,7 @@ public:
 <% solve_function = "solve" %>\
 ${cplusplus.return_type(data)} solve(${cplusplus.formal_arguments(data)}) {
     /* vis.assign(n+1, false);
-    g.assign(n+1, vector<int>());
+    g.assign(n+1, vector<ll>());
     wg.assign(n + 1, vector<pair<ll,ll>>());
     parent.assign(n+1, -1); */
 }
