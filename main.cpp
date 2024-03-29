@@ -186,6 +186,17 @@ void gen_primes() {
     }
 }
 
+vll GenListOfPrimesOnly(){
+    gen_primes();
+    vll allprimes;
+    for(int i = 0; i<1e6+2; i++){
+        if(prime[i]==1){
+            allprimes.pb(i);
+        }
+    }
+    return allprimes;
+}
+
 const int MAXN = 2 * 100000 + 10; // Adjust the size as per the problem constraints
 //smallest prime factor
 std::vector<int> spf(MAXN);
@@ -449,6 +460,7 @@ vector<ll> bfs_shortest_paths(ll start) {
 }
 
 //return a vector containing bfs path from start to end nodes specified
+//don't forget to initialize parent with parent.assign(n+1, -1);
 vector<ll> bfs(ll start, ll end) {
     queue<ll> q;
     q.push(start);
