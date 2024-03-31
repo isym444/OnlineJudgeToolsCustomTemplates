@@ -40,6 +40,7 @@
             "#include <unordered_map>",
             "#include <type_traits> // For std::is_floating_point",
             "#include <cmath> // For std::ceil",
+            "#include <iomanip>",
         ])
     if not shutil.which("clang-format"):
         logger.warning("clang-format is not installed. If you want to generate well-formatted code, please install it. If you use Ubuntu, you can run $ sudo apt install clang-format")
@@ -1754,6 +1755,8 @@ int main() {
     std::ios::sync_with_stdio(false);
     setIO("");
     std::cin.tie(nullptr);
+    // sets precision of output of floating point numbers to x number of decimal places
+    cout << fixed << setprecision(11);
 ${cplusplus.read_input(data)}
     auto ${cplusplus.return_value(data)} = ${solve_function}(${cplusplus.actual_arguments(data)});
 ${cplusplus.write_output(data)}
