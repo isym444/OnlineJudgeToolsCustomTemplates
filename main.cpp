@@ -186,6 +186,7 @@ void gen_primes() {
     }
 }
 
+//actually make the list of primes only not just the list of all numbers indicating which are prime and which are not
 vll GenListOfPrimesOnly(){
     gen_primes();
     vll allprimes;
@@ -322,14 +323,14 @@ void edge(ll originNode, ll destNode)
     totalEdges++;
  
     // for undirected graph e.g. tree, add this line:
-    // g[destNode].pb(originNode);
+    g[destNode].pb(originNode);
 }
 
 void edge(ll originNode, ll destNode, ll weight){
     wg[originNode].emplace_back(destNode, weight);
     totalEdges++;
     // For an undirected graph e.g., tree, add this line:
-    // wg[destNode].emplace_back(originNode, weight);
+    wg[destNode].emplace_back(originNode, weight);
 }
 
 //returns vector where each index is the shortest distance between the start node and node i
