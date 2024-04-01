@@ -2207,6 +2207,7 @@ vector<int> dy_wasd = {0,0,1,-1};
 //n.b. it is a data type so declare variablesas: mint x;
 // to convert any other data type such as int or ll to mint, do: mint(x);
 // when you want to access the value of a mint, use x.val()
+// e.g. modint998244353 a = modint998244353(x); // `a` now represents `x` modulo 998244353
 using mint = modint998244353;
 
 ${cplusplus.declare_constants(data)}
