@@ -2204,6 +2204,9 @@ vector<int> dy_wasd = {0,0,1,-1};
 //Graph visualizer:
 //https://csacademy.com/app/graph_editor/
 
+//n.b. it is a data type so declare variablesas: mint x;
+// to convert any other data type such as int or ll to mint, do: mint(x);
+// when you want to access the value of a mint, use x.val()
 using mint = modint998244353;
 
 ${cplusplus.declare_constants(data)}
