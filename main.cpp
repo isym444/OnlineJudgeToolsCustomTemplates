@@ -2320,6 +2320,7 @@ ${cplusplus.return_type(data)} solve(${cplusplus.formal_arguments(data)}) {
 }
 % endif
 
+//🐮🇲🇽🇯🇵🇬🇧🇵🇹
 int main() {
     std::ios::sync_with_stdio(false);
     setIO("");
