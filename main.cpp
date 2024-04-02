@@ -2256,6 +2256,9 @@ int countUniqueSubstrings(const string& s) {
     return unique_substrings.size();
 }
 
+//["abc", "def"]
+//becomes
+//["da", "eb", "fc"]
 vector<string> rotate90(const vector<string>& matrix) {
     int n = matrix.size();
     int m = matrix[0].size();
