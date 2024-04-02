@@ -42,6 +42,7 @@
             "#include <type_traits> // For std::is_floating_point",
             "#include <cmath> // For std::ceil",
             "#include <iomanip>",
+            '#include <unordered_set>',
         ])
     if not shutil.which("clang-format"):
         logger.warning("clang-format is not installed. If you want to generate well-formatted code, please install it. If you use Ubuntu, you can run $ sudo apt install clang-format")
@@ -116,46 +117,73 @@ template<class T> istream& operator >> (istream &is, vector<T>& V) {
     return is;
 }
 
-template<typename CharT, typename Traits, typename T>
-ostream& _containerprint(std::basic_ostream<CharT, Traits> &out, T const &val) {
-    return (out << val << " ");
-}
-template<typename CharT, typename Traits, typename T1, typename T2>
-ostream& _containerprint(std::basic_ostream<CharT, Traits> &out, pair<T1, T2> const &val) {
-    return (out << "(" << val.first << "," << val.second << ") ");
-}
-template<typename CharT, typename Traits, template<typename, typename...> class TT, typename... Args>
-ostream& operator << (std::basic_ostream<CharT, Traits> &out, TT<Args...> const &cont) {
-    out << "[ ";
-    for(auto&& elem : cont) _containerprint(out, elem);
-    return (out << "]");
-}
-template<class L, class R> ostream& operator << (ostream& out, pair<L, R> const &val){
-    return (out << "(" << val.first << "," << val.second << ") ");
-}
-template<class P, class Q = vector<P>, class R = less<P> > ostream& operator << (ostream& out, priority_queue<P, Q, R> const& M){
-    static priority_queue<P, Q, R> U;
-    U = M;
-    out << "{ ";
-    while(!U.empty())
-        out << U.top() << " ", U.pop();
-    return (out << "}");
-}
-template<class P> ostream& operator << (ostream& out, queue<P> const& M){
-    static queue<P> U;
-    U = M;
-    out << "{ ";
-    while(!U.empty())
-        out << U.front() << " ", U.pop();
-    return (out << "}");
-}
-template<typename CharT, typename Traits>
-ostream& operator << (std::basic_ostream<CharT, Traits> &out, vector<vector<ll>> const &matrix) {
-    for (auto &row : matrix) {
-        out << row << "\n";
-    }
-    return out;
-}
+// template<typename CharT, typename Traits, typename T>
+// ostream& _containerprint(std::basic_ostream<CharT, Traits> &out, T const &val) {
+//     return (out << val << " ");
+// }
+// template<typename CharT, typename Traits, typename T1, typename T2>
+// ostream& _containerprint(std::basic_ostream<CharT, Traits> &out, pair<T1, T2> const &val) {
+//     return (out << "(" << val.first << "," << val.second << ") ");
+// }
+// template<typename CharT, typename Traits, template<typename, typename...> class TT, typename... Args>
+// ostream& operator << (std::basic_ostream<CharT, Traits> &out, TT<Args...> const &cont) {
+//     out << "[ ";
+//     for(auto&& elem : cont) _containerprint(out, elem);
+//     return (out << "]");
+// }
+// template<class L, class R> ostream& operator << (ostream& out, pair<L, R> const &val){
+//     return (out << "(" << val.first << "," << val.second << ") ");
+// }
+// template<class P, class Q = vector<P>, class R = less<P> > ostream& operator << (ostream& out, priority_queue<P, Q, R> const& M){
+//     static priority_queue<P, Q, R> U;
+//     U = M;
+//     out << "{ ";
+//     while(!U.empty())
+//         out << U.top() << " ", U.pop();
+//     return (out << "}");
+// }
+// template<class P> ostream& operator << (ostream& out, queue<P> const& M){
+//     static queue<P> U;
+//     U = M;
+//     out << "{ ";
+//     while(!U.empty())
+//         out << U.front() << " ", U.pop();
+//     return (out << "}");
+// }
+// template<typename CharT, typename Traits>
+// ostream& operator << (std::basic_ostream<CharT, Traits> &out, vector<vector<ll>> const &matrix) {
+//     for (auto &row : matrix) {
+//         out << row << "\n";
+//     }
+//     return out;
+// }
+
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &vec);
+template <class OStream, class T, size_t sz> OStream &operator<<(OStream &os, const std::array<T, sz> &arr);
+template <class OStream, class T, class TH> OStream &operator<<(OStream &os, const std::unordered_set<T, TH> &vec);
+template <class OStream, class T, class U> OStream &operator<<(OStream &os, const pair<T, U> &pa);
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::deque<T> &vec);
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::set<T> &vec);
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::multiset<T> &vec);
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::unordered_multiset<T> &vec);
+template <class OStream, class T, class U> OStream &operator<<(OStream &os, const std::pair<T, U> &pa);
+template <class OStream, class TK, class TV> OStream &operator<<(OStream &os, const std::map<TK, TV> &mp);
+template <class OStream, class TK, class TV, class TH> OStream &operator<<(OStream &os, const std::unordered_map<TK, TV, TH> &mp);
+template <class OStream, class... T> OStream &operator<<(OStream &os, const std::tuple<T...> &tpl);
+
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &vec) { os << '['; for (auto v : vec) os << v << ','; os << ']'; return os; }
+template <class OStream, class T, size_t sz> OStream &operator<<(OStream &os, const std::array<T, sz> &arr) { os << '['; for (auto v : arr) os << v << ','; os << ']'; return os; }
+template <class... T> std::istream &operator>>(std::istream &is, std::tuple<T...> &tpl) { std::apply([&is](auto &&... args) { ((is >> args), ...);}, tpl); return is; }
+template <class OStream, class... T> OStream &operator<<(OStream &os, const std::tuple<T...> &tpl) { os << '('; std::apply([&os](auto &&... args) { ((os << args << ','), ...);}, tpl); return os << ')'; }
+template <class OStream, class T, class TH> OStream &operator<<(OStream &os, const std::unordered_set<T, TH> &vec) { os << '{'; for (auto v : vec) os << v << ','; os << '}'; return os; }
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::deque<T> &vec) { os << "deq["; for (auto v : vec) os << v << ','; os << ']'; return os; }
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::set<T> &vec) { os << '{'; for (auto v : vec) os << v << ','; os << '}'; return os; }
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::multiset<T> &vec) { os << '{'; for (auto v : vec) os << v << ','; os << '}'; return os; }
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::unordered_multiset<T> &vec) { os << '{'; for (auto v : vec) os << v << ','; os << '}'; return os; }
+template <class OStream, class T, class U> OStream &operator<<(OStream &os, const std::pair<T, U> &pa) { return os << '(' << pa.first << ',' << pa.second << ')'; }
+template <class OStream, class TK, class TV> OStream &operator<<(OStream &os, const std::map<TK, TV> &mp) { os << '{'; for (auto v : mp) os << v.first << "=>" << v.second << ','; os << '}'; return os; }
+template <class OStream, class TK, class TV, class TH> OStream &operator<<(OStream &os, const std::unordered_map<TK, TV, TH> &mp) { os << '{'; for (auto v : mp) os << v.first << "=>" << v.second << ','; os << '}'; return os; }
+
 
 void setIO(string name = "")
 { // name is nonempty for USACO file I/O
@@ -2309,6 +2337,25 @@ vector<int> dx = {1, 0, -1, 0, 1, 1, -1, -1};
 vector<int> dx_wasd = {1,-1,0,0};
 vector<int> dy = {0, 1, 0, -1, 1, -1, 1, -1};
 vector<int> dy_wasd = {0,0,1,-1};
+
+bool isBitSet(int number, int bitPosition) {
+    return (number & (1 << bitPosition)) != 0;
+}
+
+#ifdef isym444_LOCAL
+const string COLOR_RESET = "\033[0m", BRIGHT_GREEN = "\033[1;32m", BRIGHT_RED = "\033[1;31m", BRIGHT_CYAN = "\033[1;36m", NORMAL_CROSSED = "\033[0;9;37m", RED_BACKGROUND = "\033[1;41m", NORMAL_FAINT = "\033[0;2m";
+#define dbg(x) std::cerr << BRIGHT_CYAN << #x << COLOR_RESET << " = " << (x) << NORMAL_FAINT << " (L" << __LINE__ << ") " << __FILE__ << COLOR_RESET << std::endl
+#define dbgif(cond, x) ((cond) ? std::cerr << BRIGHT_CYAN << #x << COLOR_RESET << " = " << (x) << NORMAL_FAINT << " (L" << __LINE__ << ") " << __FILE__ << COLOR_RESET << std::endl : std::cerr)
+#else
+#define dbg(x) ((void)0)
+#define dbgif(cond, x) ((void)0)
+#endif
+
+template <class T> std::vector<T> sort_unique(std::vector<T> vec) { sort(vec.begin(), vec.end()), vec.erase(unique(vec.begin(), vec.end()), vec.end()); return vec; }
+//index of the first occurrence of x. If x is not present in the vector, it returns the index where x can be inserted while keeping the vector sorted
+template <class T> int arglb(const std::vector<T> &v, const T &x) { return std::distance(v.begin(), std::lower_bound(v.begin(), v.end(), x)); }
+//index immediately after the last occurrence of x. If x is not present, like the lower bound, it returns the index where x can be inserted to maintain order
+template <class T> int argub(const std::vector<T> &v, const T &x) { return std::distance(v.begin(), std::upper_bound(v.begin(), v.end(), x)); }
 
 //Graph visualizer:
 //https://csacademy.com/app/graph_editor/
