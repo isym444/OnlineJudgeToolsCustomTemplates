@@ -1,61 +1,30 @@
-<%!
-    import json
-    import os
-    import platform
-    import shutil
-    from logging import getLogger
+#include <algorithm>
+#include <array>
+#include <assert.h>
+#include <bit>
+#include <bitset>
+#include <cassert>
+#include <climits>
+#include <cmath>
+#include <cstdio>
+#include <deque>
+#include <functional>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <string>
+#include <type_traits>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
 
-    import onlinejudge_template.generator.cplusplus as cplusplus
-    import onlinejudge_template.generator.topcoder as topcoder
-    import onlinejudge_template.generator.about as about
-    import onlinejudge_template.generator.hook as hook
-%>\
-<%
-    logger = getLogger(__name__)
-    data["config"]["rep_macro"] = "REP"
-    data["config"]["long_long_int"] = "long long"
-    if platform.system() == "Linux" and "clang" not in os.environ.get("CXX", "g++"):
-        include = "#include <bits/stdc++.h>"
-    else:
-        include = "\n".join([
-            "#include <iostream>",
-            "#include <string>",
-            "#include <vector>",
-            "#include <cstdio>",
-            "#include <algorithm>",
-            "#include <iostream>",
-            "#include <vector>",
-            "#include <string>",
-            "#include <utility>",
-            "#include <queue>",
-            "#include <array>",
-            "#include <climits>",
-            "#include <cmath>",
-            "#include <set>",
-            "#include <map>",
-            "#include <bitset>",
-            "#include <deque>",
-            "#include <numeric>",
-            "#include <assert.h>",
-            "#include <cassert>",
-            "#include <unordered_map>",
-            "#include <type_traits> // For std::is_floating_point",
-            "#include <cmath> // For std::ceil",
-            "#include <iomanip>",
-            '#include <unordered_set>',
-        ])
-    if not shutil.which("clang-format"):
-        logger.warning("clang-format is not installed. If you want to generate well-formatted code, please install it. If you use Ubuntu, you can run $ sudo apt install clang-format")
-    else:
-        format_config = {
-            "BasedOnStyle": "Google",
-            "IndentWidth": 4,
-            "ColumnLimit": 9999,
-            "ForEachMacros": ["REP", "REP3", "REP_R", "REP3R"],
-        }
-        hook.register_filter_command(["clang-format", "--style", json.dumps(format_config)], data=data)
-%>\
-${include}
+\
+\
+
 
 using namespace std;
 
@@ -1110,10 +1079,8 @@ std::vector<std::string> split(const char* s, char delim) {
 }
 
 
-#include <functional>
 
 #if __cplusplus >= 202002L
-#include <bit>
 #endif
 
 namespace internal {
@@ -1158,7 +1125,6 @@ constexpr int countr_zero_constexpr(unsigned int n) {
 
 
 
-#include <type_traits>
 
 
 namespace internal {
@@ -1902,23 +1868,16 @@ vector<int> dy_wasd = {0,0,1,-1};
 // e.g. modint998244353 a = modint998244353(x); // `a` now represents `x` modulo 998244353
 using mint = modint998244353;
 
-${cplusplus.declare_constants(data)}
-% if topcoder.is_topcoder(data):
-<% solve_function = topcoder.class_name(data) + "()." + topcoder.method_name(data) %>\
-class ${topcoder.class_name(data)} {
-public:
-    ${cplusplus.return_type(data)} ${topcoder.method_name(data)}(${cplusplus.formal_arguments(data)}) {
-    }
-};
-% else:
-<% solve_function = "solve" %>\
-${cplusplus.return_type(data)} solve(${cplusplus.formal_arguments(data)}) {
+
+
+\
+void solve() {
     /* vis.assign(n+1, false);
     g.assign(n+1, vector<ll>());
     wg.assign(n + 1, vector<pair<ll,ll>>());
     parent.assign(n+1, -1); */
 }
-% endif
+
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -1926,10 +1885,7 @@ int main() {
     std::cin.tie(nullptr);
     // sets precision of output of floating point numbers to x number of decimal places
     cout << fixed << setprecision(11);
-${cplusplus.read_input(data)}
-    auto ${cplusplus.return_value(data)} = ${solve_function}(${cplusplus.actual_arguments(data)});
-${cplusplus.write_output(data)}
-
+    cout << "test" << endl;
     /* genprimes(1e5); */
 
     /* //run the bfs and output order of traversed nodes (for loop is only used for non-connected graphs)
