@@ -583,7 +583,10 @@ void dfsSubtrees(ll startNode){
 
 vector<vector<ll> >ddist;
 
-void floydWarshall(ll n) {
+
+//returns vvll of distances (i.e. number of edges) from all nodes to all other nodes
+vvll floydWarshall(ll n) {
+    vector<vector<ll> >ddist;
     // Step 1: Initialization
     ddist.assign(n, vector<ll>(n, INF));
     for (int i = 0; i < n; i++) {
@@ -609,7 +612,9 @@ void floydWarshall(ll n) {
             }
         }
     }
+    return ddist;
 }
+
 
 //disjoint set union/union find
 //consider using coordinate compression!
