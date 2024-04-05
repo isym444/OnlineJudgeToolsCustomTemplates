@@ -661,6 +661,7 @@ struct UndirectedWeightedTree {
         _fix_root_dfs(root, INVALID, INVALID);
     }
 
+    //this does binary lifting precalculation
     std::vector<std::vector<int>> doubling;
     void doubling_precalc() {
         doubling.assign(lgV, std::vector<int>(V));
