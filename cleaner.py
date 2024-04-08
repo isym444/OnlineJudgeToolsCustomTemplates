@@ -40,6 +40,30 @@ def clean_template(input_file_path, output_file_path):
     final_content = '\n'.join(includes) + '\n\n' + content
     final_content = re.sub(r'.*bits/stdc.*\n', '', final_content)
 
+    line1 = "template <typename Func, typename Seq>"
+    line2 = "auto transform_to_vector(const Func &f, const Seq &s) {"
+    pattern = "template <typename Func, typename Seq>\n" \
+              "auto transform_to_vector(const Func &f, const Seq &s) {\n"
+
+    target_line = "using mint = modint998244353;"
+    if target_line in final_content and not f"//{target_line}" in final_content:
+        # Replace the first occurrence of the target line with its commented version
+        final_content = final_content.replace(target_line, f"//{target_line}", 1)
+
+    start_index = final_content.find(pattern)
+    print(start_index)
+    # If the pattern is found
+    if start_index != -1:
+        # Find the end of the 200 lines after the pattern
+        end_index = start_index
+        for _ in range(687):  # Including the two lines of the pattern
+            end_index = final_content.find('\n', end_index + 1)
+            if end_index == -1:  # If the end of file is reached
+                break
+        
+        # Delete the pattern and the next 200 lines
+        final_content = final_content[:start_index] + final_content[end_index+1:]
+
     # Write the final cleaned content to the output file
     with open(output_file_path, 'w') as file:
         file.write(final_content)
