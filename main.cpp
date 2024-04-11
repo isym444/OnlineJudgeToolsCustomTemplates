@@ -45,6 +45,7 @@
             '#include <unordered_set>',
             '#include <functional>',
             '#include <type_traits>',
+            '#include <chrono>',
         ])
     if not shutil.which("clang-format"):
         logger.warning("clang-format is not installed. If you want to generate well-formatted code, please install it. If you use Ubuntu, you can run $ sudo apt install clang-format")
