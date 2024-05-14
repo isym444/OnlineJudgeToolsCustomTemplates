@@ -97,6 +97,7 @@ using namespace std;
 #define itobin(intToConvertTo32BitBinaryNum) std::bitset<32>(intToConvertTo32BitBinaryNum)
 #define bintoi(binaryNum32BitToConvertToInt) binaryNum32BitToConvertToInt.to_ulong()
 #define binstoi(binaryStringToConvertToInt) stoi(binaryStringToConvertToInt, nullptr, 2)
+#define binstoll(binaryStringToConvertToInt) stoll(binaryStringToConvertToInt, nullptr, 2)
 #define vecsum(vectorName) accumulate((vectorName).begin(), (vectorName).end(), 0)
 #define setbits(decimalnumber) __builtin_popcount(decimalnumber)
 #define stringSplice(str, i, j) (str).erase(i, j) //j is the length of string to erase starting from index i
@@ -907,7 +908,7 @@ struct RangeSet : public std::map<T, T> {
         }
 };
 
-string itobins(int n) {
+string itobins(ll n) {
     if (n == 0) return "0";
 
     string binary = "";
@@ -920,7 +921,7 @@ string itobins(int n) {
     return binary;
 }
 
-string dtobx(int decimalNumber, int base) {
+string dtobx(ll decimalNumber, ll base) {
     if (base < 2 || base > 36) {
         return "Invalid base";
     }
