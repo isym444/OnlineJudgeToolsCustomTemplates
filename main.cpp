@@ -81,7 +81,8 @@ using namespace std;
 #define fx(dataStructure) for(auto x : dataStructure)
 #define wasd(x) foi(-1,2) foj(-1,2) if(abs(i)+abs(j)==1){x};
 #define qweasdzxc(x) foi(-1,2) foj(-1,2) if(abs(i)+abs(j)==1){x};
-#define isvalid(x_plus_i,max_boundary_n,y_plus_j,max_boundary_m) (0<=x_plus_i and x_plus_i<max_boundary_n and 0<=y_plus_j and y_plus_j<max_boundary_m)
+// #define isvalid(x_plus_i,max_boundary_n,y_plus_j,max_boundary_m) (0<=x_plus_i and x_plus_i<max_boundary_n and 0<=y_plus_j and y_plus_j<max_boundary_m)
+#define isvalid(x_value,y_value,min_valid_x,max_valid_x,min_valid_y,max_valid_y) (min_valid_x<=x_value and x_value<=max_valid_x and min_valid_y<=y_value and y_value<=max_valid_y)
 //#define gcd __gcd
 #define mp make_pair
 #define mt make_tuple
@@ -1886,6 +1887,24 @@ vector<int> dx = {1, 0, -1, 0, 1, 1, -1, -1};
 vector<int> dx_wasd = {1,-1,0,0};
 vector<int> dy = {0, 1, 0, -1, 1, -1, 1, -1};
 vector<int> dy_wasd = {0,0,1,-1};
+
+//Takes in a point and returns vector<pair<int, int>> containing all points relative to og point that form a square given an initial dx & dy between og_point and one other point n.b. always rotating in same direction
+vector<pair<int, int>> generateSquarePoints(int x, int y, int dx, int dy) {
+    pair<int, int> p1, p2, p3, p4;
+    
+    p1 = mp(x, y);
+    p2 = mp(p1.first + dx, p1.second + dy);
+    p3 = mp(p2.first - dy, p2.second + dx);
+    p4 = mp(p3.first - dx, p3.second - dy);
+    
+    // p1 = mp(x,y);
+    // p2 = mp(x+dx,y+dy);
+    // p3 = mp(x+dx-dy,y+dy+dx);
+    // p4 = mp(x-dy,y+dx);
+
+    vector<pair<int, int>> points = {p1, p2, p3, p4};
+    return points;
+}
 
 //Graph visualizer:
 //https://csacademy.com/app/graph_editor/
