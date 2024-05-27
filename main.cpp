@@ -64,6 +64,8 @@ using namespace std;
 
 
 /*/---------------------------Looping helpers----------------------/*/
+#define rep(i,n) for(int i = 0; i < (n); ++i)
+#define rrep(i,n) for(int i = 1; i <= (n); ++i)
 #define REP(i, n) for (int i = 0; (i) < (int)(n); ++ (i))
 #define REP3(i, m, n) for (int i = (m); (i) < (int)(n); ++ (i))
 #define REP_R(i, n) for (int i = (int)(n) - 1; (i) >= 0; -- (i))
@@ -84,6 +86,8 @@ using namespace std;
 #define sz(x) (int)(x).size()
 #define fi first
 #define sec second
+#define se second
+
 #define ALL(x) ::std::begin(x), ::std::end(x)
 #define all(a) a.begin(),a.end()
 #define rng(a) a.begin(),a.end()
@@ -98,6 +102,9 @@ typedef pair<ll, ll> pl;
 typedef vector<long long> vll;
 typedef std::vector<std::vector<long long>> vvll;
 
+template<typename T> using vc = vector<T>;
+template<typename T> using vc = vector<T>;
+using vl = vc<ll>;
 
 //max heap priority queue i.e. top() gives largest value
 typedef priority_queue<ll> maxpq;
@@ -105,7 +112,7 @@ typedef priority_queue<ll> maxpq;
 typedef priority_queue<ll, vector<ll>, greater<ll>> minpq;
 
 //multiset provides automatic ordering on insertion but unlike set, keeps duplicate/multiple items of same value
-//n.b. set also provides autoamtic ordering on insertion
+//n.b. set also provides autoamtic ordering on insertion n.b. maps are also sorted automatically on insertion according to key order
 //.count(x) O(num_of_x+logN)
 //.find(x) O(logN) -> so use find over count if possible
 //.insert(x) O(logN) -> inserts s.t. sorted order is maintained
