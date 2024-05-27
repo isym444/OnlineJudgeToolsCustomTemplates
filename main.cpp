@@ -62,13 +62,12 @@ ${include}
 
 using namespace std;
 
+
+/*/---------------------------Looping helpers----------------------/*/
 #define REP(i, n) for (int i = 0; (i) < (int)(n); ++ (i))
 #define REP3(i, m, n) for (int i = (m); (i) < (int)(n); ++ (i))
 #define REP_R(i, n) for (int i = (int)(n) - 1; (i) >= 0; -- (i))
 #define REP3R(i, m, n) for (int i = (int)(n) - 1; (i) >= (int)(m); -- (i))
-#define ALL(x) ::std::begin(x), ::std::end(x)
-#define ll long long
-#define sz(x) (int)(x).size()
 #define fo(from_0_to_non_incl_to) for(int i=0;i<from_0_to_non_incl_to;i++)
 //h CAREFUL if you put an expression as an argument it will give bugs, better assign expression to variable then put that in the foi() as argument
 #define foi(from,non_incl_to) for(int i=from;i<(non_incl_to);i++)
@@ -79,35 +78,26 @@ using namespace std;
 #define fokk(non_incl_to) for(int k=0;k<(non_incl_to);k++)
 #define fa(x, dataStructure) for(auto x : dataStructure)
 #define fx(dataStructure) for(auto x : dataStructure)
+
+/*/---------------------------Abbreviations----------------------/*/
+#define ll long long
+#define sz(x) (int)(x).size()
+#define fi first
+#define sec second
+#define ALL(x) ::std::begin(x), ::std::end(x)
+#define all(a) a.begin(),a.end()
+#define rng(a) a.begin(),a.end()
 //#define gcd __gcd
 #define mp make_pair
 #define mt make_tuple
-//Makes % get floor remainder (towards -INF) and make it always positive
-#define MOD(x,y) (x%y+y)%y
-// #define print(p) cout<<p<<endl
-#define fi first
-#define sec second
-#define prmap(m) {for(auto i: m) cout<<(i.fi)<<i.sec<<endl}
-#define pra(a) {for(auto i: a) cout<<i<<endl;}
-#define prm(a) {for(auto i: a) pra(i) cout<<endl;}
-//#define itobin(x) bitset<32> bin(x)
-#define itobin(intToConvertTo32BitBinaryNum) std::bitset<32>(intToConvertTo32BitBinaryNum)
-#define bintoi(binaryNum32BitToConvertToInt) binaryNum32BitToConvertToInt.to_ulong()
-#define binstoi(binaryStringToConvertToInt) stoi(binaryStringToConvertToInt, nullptr, 2)
-#define binstoll(binaryStringToConvertToInt) stoll(binaryStringToConvertToInt, nullptr, 2)
-#define vecsum(vectorName) accumulate((vectorName).begin(), (vectorName).end(), 0)
-#define setbits(decimalnumber) __builtin_popcount(decimalnumber)
-#define stringSplice(str, i, j) (str).erase(i, j) //j is the length of string to erase starting from index i
-#define string_pop_back(str) (str).pop_back()
-#define substring(str, i, j) (str).substr(i, j) //j is the length of substring from i
-#define rng(a) a.begin(),a.end()
-#define all(a) a.begin(),a.end()
+#define pb push_back
+ll INF=LLONG_MAX;
 
+/*/---------------------------Data Structures----------------------/*/
 typedef pair<ll, ll> pl;
 typedef vector<long long> vll;
 typedef std::vector<std::vector<long long>> vvll;
 
-#define pb push_back
 
 //max heap priority queue i.e. top() gives largest value
 typedef priority_queue<ll> maxpq;
@@ -129,11 +119,33 @@ typedef multiset<ll> msll;
 #define msmin(mymultiset) *mymultiset.begin()
 #define msmax(mymultiset) *mymultiset.rbegin()
 
-ll INF=LLONG_MAX;
+/*/---------------------------Misc----------------------/*/
+//Makes % get floor remainder (towards -INF) and make it always positive
+#define MOD(x,y) (x%y+y)%y
+// #define print(p) cout<<p<<endl
+#define prmap(m) {for(auto i: m) cout<<(i.fi)<<i.sec<<endl}
+#define pra(a) {for(auto i: a) cout<<i<<endl;}
+#define prm(a) {for(auto i: a) pra(i) cout<<endl;}
+#define vecsum(vectorName) accumulate((vectorName).begin(), (vectorName).end(), 0)
+
+/*/---------------------------Base Conversions----------------------/*/
+//#define itobin(x) bitset<32> bin(x)
+#define itobin(intToConvertTo32BitBinaryNum) std::bitset<32>(intToConvertTo32BitBinaryNum)
+#define bintoi(binaryNum32BitToConvertToInt) binaryNum32BitToConvertToInt.to_ulong()
+#define binstoi(binaryStringToConvertToInt) stoi(binaryStringToConvertToInt, nullptr, 2)
+#define binstoll(binaryStringToConvertToInt) stoll(binaryStringToConvertToInt, nullptr, 2)
+
+/*/---------------------------Bits----------------------/*/
+#define setbits(decimalnumber) __builtin_popcount(decimalnumber)
 
 
+/*/---------------------------Strings----------------------/*/
+#define stringSplice(str, i, j) (str).erase(i, j) //j is the length of string to erase starting from index i
+#define string_pop_back(str) (str).pop_back()
+#define substring(str, i, j) (str).substr(i, j) //j is the length of substring from i
+
+/*/---------------------------Custom Hash----------------------/*/
 // gp_hash_table<long long, int, custom_hash> safe_hash_table;
-
 
 struct custom_hash {
     static uint64_t splitmix64(uint64_t x) {
@@ -195,6 +207,7 @@ void setIO(string name = "")
     }
 }
 
+/*/---------------------------Custom library - most used only----------------------/*/
 //disjoint set union/union find
 //consider using coordinate compression!
 struct dsu {
@@ -323,15 +336,21 @@ template <class T> int indlb(const std::vector<T> &v, const T &x) { return std::
 //index immediately after the last occurrence of x. If x is not present, like the lower bound, it returns the index where x can be inserted to maintain order
 template <class T> int indub(const std::vector<T> &v, const T &x) { return std::distance(v.begin(), std::upper_bound(v.begin(), v.end(), x)); }
 
-//Graph visualizer:
+/*/---------------------------Useful Graph Visualizer----------------------/*/
 //https://csacademy.com/app/graph_editor/
 
+//h INSERT CODE SNIPPETS HERE
+/*/---------------------------INSERT CODE SNIPPETS HERE----------------------/*/
+
+
+/*/---------------------------Syntax hints for mint once import mint.cpp----------------------/*/
 //n.b. it is a data type so declare variablesas: mint x;
 // to convert any other data type such as int or ll to mint, do: mint(x);
 // when you want to access the value of a mint, use x.val()
 // e.g. modint998244353 a = modint998244353(x); // `a` now represents `x` modulo 998244353
 // using mint = modint998244353;
 
+/*/---------------------------OJ tools automatic I/O parsing----------------------/*/
 ${cplusplus.declare_constants(data)}
 % if topcoder.is_topcoder(data):
 <% solve_function = topcoder.class_name(data) + "()." + topcoder.method_name(data) %>\
@@ -361,6 +380,8 @@ ${cplusplus.read_input(data)}
     auto ${cplusplus.return_value(data)} = ${solve_function}(${cplusplus.actual_arguments(data)});
 ${cplusplus.write_output(data)}
 
+
+    /*/---------------------------Syntax hints once import various Snippets----------------------/*/
     /* genprimes(1e5); */
 
     /* //run the bfs and output order of traversed nodes (for loop is only used for non-connected graphs)
@@ -373,5 +394,6 @@ ${cplusplus.write_output(data)}
     wasd(
         //cout << "Use this for problems where you have to go up, down, left right" << endl;
     ) */
+
     return 0;
 }
