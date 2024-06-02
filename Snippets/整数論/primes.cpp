@@ -4,7 +4,7 @@
 ll nffe(ll n, ll p){
     if (n==0) return 0;
     ll tt = floordiv(n,p);
-    return(tt+nfe(tt,p));
+    return(tt+nffe(tt,p));
 }
 
 //calculate the exponent of prime factor p of n
