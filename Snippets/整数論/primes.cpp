@@ -1,4 +1,22 @@
 
+
+//calculate the exponent of prime factor p of n!
+ll nffe(ll n, ll p){
+    if (n==0) return 0;
+    ll tt = floordiv(n,p);
+    return(tt+nfe(tt,p));
+}
+
+//calculate the exponent of prime factor p of n
+ll nfe(ll n, ll p) {
+    ll count = 0;
+    while (n % p == 0) {
+        n /= p;
+        count++;
+    }
+    return count;
+}
+
 const int MAXA = 5000006;
 bool prime[MAXA];
 
