@@ -17,6 +17,20 @@ ll nfe(ll n, ll p) {
     return count;
 }
 
+//return prime factorization of x as vector<pair<ll,ll>> -> use this if possible over sieve.Factorize(x) as easier to deal with
+vector<pll> factor(ll x) {
+    vector<pll> ans;
+    for(ll i = 2; i * i <= x; i++)
+        if(x % i == 0) {
+            ans.push_back({i, 1});
+            while((x /= i) % i == 0) ans.back().second++;
+        }
+    if(x != 1) ans.push_back({x, 1});
+    return ans;
+}
+
+/* ==========================================================+ */
+
 const int MAXA = 5000006;
 bool prime[MAXA];
 
