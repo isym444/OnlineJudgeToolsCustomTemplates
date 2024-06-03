@@ -1,6 +1,20 @@
+
+//converts 23456 to "23456"
+string integerToString(ll num){
+    return to_string(num);
+}
+
+//takes in result of itobin()
+template<size_t N>
+std::string integerToString(std::bitset<N> bits) {
+    return bits.to_string();
+}
+
 int digit_to_int(char c) { return c - '0'; }
 int lowercase_to_int(char c) { return c - 'a'; }
 int uppercase_to_int(char c) { return c - 'A'; }
+
+
 template <typename Func, typename Seq>
 auto transform_to_vector(const Func &f, const Seq &s) {
     std::vector<std::invoke_result_t<Func, typename Seq::value_type>> v;
@@ -19,6 +33,8 @@ Seq concat(Seq s, const Seq &t) {
     std::copy(std::begin(t), std::end(t), std::back_inserter(s));
     return s;
 }
+
+
 std::vector<int> digit_str_to_ints(const std::string &s) {
     return transform_to_vector(digit_to_int, s);
 }

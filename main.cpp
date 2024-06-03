@@ -66,8 +66,8 @@ using namespace std;
 /*/---------------------------Looping helpers----------------------/*/
 #define rep(i,n) for(int i = 0; i < (n); ++i)
 #define rrep(i,n) for(int i = 1; i <= (n); ++i)
+// #define rep(i, m, n) for (int i = (m); (i) < (int)(n); ++ (i))
 #define REP(i, n) for (int i = 0; (i) < (int)(n); ++ (i))
-#define REP3(i, m, n) for (int i = (m); (i) < (int)(n); ++ (i))
 #define REP_R(i, n) for (int i = (int)(n) - 1; (i) >= 0; -- (i))
 #define REP3R(i, m, n) for (int i = (int)(n) - 1; (i) >= (int)(m); -- (i))
 #define fo(from_0_to_non_incl_to) for(int i=0;i<from_0_to_non_incl_to;i++)
@@ -99,6 +99,8 @@ ll INF=LLONG_MAX;
 
 /*/---------------------------Data Structures----------------------/*/
 typedef pair<ll, ll> pl;
+using pll = pair<ll,ll>;
+using pi = pair<int,int>;
 typedef vector<long long> vll;
 typedef std::vector<std::vector<long long>> vvll;
 
