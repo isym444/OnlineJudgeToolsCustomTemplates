@@ -10,6 +10,11 @@ std::string integerToString(std::bitset<N> bits) {
     return bits.to_string();
 }
 
+//converts "23456" to 23456
+ll stringToInteger(string s){
+    return stoll(s);
+}
+
 int digit_to_int(char c) { return c - '0'; }
 int lowercase_to_int(char c) { return c - 'a'; }
 int uppercase_to_int(char c) { return c - 'A'; }

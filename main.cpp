@@ -65,6 +65,7 @@ using namespace std;
 
 /*/---------------------------Looping helpers----------------------/*/
 #define rep(i,n) for(int i = 0; i < (n); ++i)
+#define repp(i, a, b) for (int i = (a); i < (b); ++i)
 #define rrep(i,n) for(int i = 1; i <= (n); ++i)
 // #define rep(i, m, n) for (int i = (m); (i) < (int)(n); ++ (i))
 #define REP(i, n) for (int i = 0; (i) < (int)(n); ++ (i))
