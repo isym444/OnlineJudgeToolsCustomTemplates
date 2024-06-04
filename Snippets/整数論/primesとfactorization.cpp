@@ -54,7 +54,7 @@ void gen_primes() {
 vll GenListOfPrimesOnly(){
     gen_primes();
     vll allprimes;
-    for(int i = 0; i<MAXA; i++){
+    for(int i = 2; i<MAXA; i++){
         if(prime[i]==1){
             allprimes.pb(i);
         }
