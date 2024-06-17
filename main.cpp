@@ -46,6 +46,7 @@
             '#include <functional>',
             '#include <type_traits>',
             '#include <chrono>',
+            '#include <list>',
         ])
     if not shutil.which("clang-format"):
         logger.warning("clang-format is not installed. If you want to generate well-formatted code, please install it. If you use Ubuntu, you can run $ sudo apt install clang-format")
@@ -100,6 +101,7 @@ ll INF=LLONG_MAX;
 
 /*/---------------------------Data Structures----------------------/*/
 typedef pair<ll, ll> pl;
+typedef list<ll> dll;
 using pll = pair<ll,ll>;
 using pi = pair<int,int>;
 typedef vector<long long> vll;
