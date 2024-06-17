@@ -101,6 +101,7 @@ ll INF=LLONG_MAX;
 
 /*/---------------------------Data Structures----------------------/*/
 typedef pair<ll, ll> pl;
+//N.b. next() for next node in list, insert(iterator, value) "inserts" value at position right before iterator
 typedef list<ll> dll;
 using pll = pair<ll,ll>;
 using pi = pair<int,int>;
