@@ -140,6 +140,7 @@ typedef multiset<ll> msll;
 #define pra(a) {for(auto i: a) cout<<i<<endl;}
 #define prm(a) {for(auto i: a) pra(i) cout<<endl;}
 #define vecsum(vectorName) accumulate((vectorName).begin(), (vectorName).end(), 0)
+#define isvalid(checking,min_boundary,max_boundary) (0<=checking and checking<max_boundary)
 
 /*/---------------------------Base Conversions----------------------/*/
 //#define itobin(x) bitset<32> bin(x)
