@@ -7,3 +7,6 @@ vector<int> dx_wasd = {1,-1,0,0};
 vector<int> dy = {0, 1, 0, -1, 1, -1, 1, -1};
 vector<int> dy_wasd = {0,0,1,-1};
 
+ll uniquexy(ll x, ll y){
+    return x*W+y;
+}
