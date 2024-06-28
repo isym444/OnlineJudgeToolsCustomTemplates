@@ -150,7 +150,7 @@ typedef multiset<ll> msll;
 #define binstoll(binaryStringToConvertToInt) stoll(binaryStringToConvertToInt, nullptr, 2)
 
 /*/---------------------------Bits----------------------/*/
-#define setbits(decimalnumber) __builtin_popcount(decimalnumber)
+#define setbits(decimalnumber) __builtin_popcountll(decimalnumber)
 
 
 /*/---------------------------Strings----------------------/*/
