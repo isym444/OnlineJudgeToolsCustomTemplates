@@ -1,4 +1,4 @@
-vll ans;
+deque<ll> ans;
 vvll to;
 vll visited;
 
@@ -8,7 +8,12 @@ void dfs(ll node){
         if(visited[neighbour]) continue;
         dfs(neighbour);
     }
-    ans.pb(node);
+    ans.push_front(node);
+}
+
+//ensures runs dfs for all nodes in case graph not connected
+foi(0,N){
+    dfs(dfs, i);
 }
 
 //check there is only one valid topological order
