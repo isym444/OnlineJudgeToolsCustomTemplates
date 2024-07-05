@@ -293,6 +293,26 @@ struct dsu {
     std::vector<int> parent_or_size;
 };
 
+
+
+/*/---------------------------Syntax hints for mint once import mint.cpp----------------------/*/
+//n.b. it is a data type so declare variablesas: mint x;
+// to convert any other data type such as int or ll to mint, do: mint(x);
+// when you want to access the value of a mint, use x.val()
+// e.g. modint998244353 a = modint998244353(x); // `a` now represents `x` modulo 998244353
+// using mint = modint998244353;
+// Custom operator<< for modint998244353
+// std::ostream& operator<<(std::ostream& os, const mint& m) {
+//     return os << m.val();
+// }
+
+// // Comment out vector ostream template near beginning of file and uncomment this one to allow for ostream of mint
+// template<class T> std::istream& operator >> (std::istream &is, std::vector<T>& V) {
+//     for(auto &e : V)
+//         is >> e;
+//     return is;
+// }
+
 #ifdef isym444_LOCAL
 const string COLOR_RESET = "\033[0m", BRIGHT_GREEN = "\033[1;32m", BRIGHT_RED = "\033[1;31m", BRIGHT_CYAN = "\033[1;36m", NORMAL_CROSSED = "\033[0;9;37m", RED_BACKGROUND = "\033[1;41m", NORMAL_FAINT = "\033[0;2m";
 #define dbg(x) std::cerr << BRIGHT_CYAN << #x << COLOR_RESET << " = " << (x) << NORMAL_FAINT << " (L" << __LINE__ << ") " << COLOR_RESET << std::endl
@@ -357,12 +377,6 @@ template <class T> int indub(const std::vector<T> &v, const T &x) { return std::
 /*/---------------------------INSERT CODE SNIPPETS HERE----------------------/*/
 
 
-/*/---------------------------Syntax hints for mint once import mint.cpp----------------------/*/
-//n.b. it is a data type so declare variablesas: mint x;
-// to convert any other data type such as int or ll to mint, do: mint(x);
-// when you want to access the value of a mint, use x.val()
-// e.g. modint998244353 a = modint998244353(x); // `a` now represents `x` modulo 998244353
-// using mint = modint998244353;
 
 /*/---------------------------OJ tools automatic I/O parsing----------------------/*/
 ${cplusplus.declare_constants(data)}
