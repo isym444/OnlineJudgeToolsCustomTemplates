@@ -302,15 +302,10 @@ struct dsu {
 // e.g. modint998244353 a = modint998244353(x); // `a` now represents `x` modulo 998244353
 // using mint = modint998244353;
 // Custom operator<< for modint998244353
+
+// //uncomment this code to allow dbg / ostream to handle mint
 // std::ostream& operator<<(std::ostream& os, const mint& m) {
 //     return os << m.val();
-// }
-
-// // Comment out vector ostream template near beginning of file and uncomment this one to allow for ostream of mint
-// template<class T> std::istream& operator >> (std::istream &is, std::vector<T>& V) {
-//     for(auto &e : V)
-//         is >> e;
-//     return is;
 // }
 
 #ifdef isym444_LOCAL
