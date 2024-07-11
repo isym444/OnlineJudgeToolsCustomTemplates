@@ -207,7 +207,7 @@ int main() {
         int l = a[i]-d, r = a[i]+d+1; // Determine the range [l, r) to query
         l = max(l,0); // Ensure l is non-negative
         r = min(r,M); // Ensure r is within the segment tree bounds
-        int now = dp.prod(l,r) + 1; // Query the maximum value in the range [l, r) and increment by 1
+        int now = dp.prod(l,r) + 1; // Query the maximum value in the range [l, r) and increment by 1...PROD stands for produce the max(a,b) for all elements in range of seg tree
         dp.set(a[i], now); // Update the segment tree at position a[i] with the new value
     }
 
