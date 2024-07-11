@@ -12,13 +12,15 @@ while(!q.empty()){
     pair<ll,ll> cur = q.front();
     auto [i,j] = cur;
     q.pop();
+    if(G[i][j]=='T'){
+        cout << "Yes" << endl;
+        return 0;
+    }
     fok(0,4){
             ll di = i+dy_wasd[k];
             ll dj = j+dx_wasd[k];
-            if(isvalidsingle(di,0,H-1)&&isvalidsingle(dj,0,W-1)){
-                if(visited[di][dj]) continue;
-                if(G[di][dj]!='.'&&G[di][dj]!='S'&&G[di][dj]!='G') continue;
-                visited[di][dj]=visited[i][j]+1;
+            if(isvalidsingle(di,0,H)&&isvalidsingle(dj,0,W)&&G[di][dj]!='#'&&!visited[di][dj]){
+                visited[di][dj]=1;
                 q.push(mp(di,dj));
             }
         }
