@@ -348,6 +348,6 @@ ${cplusplus.write_output(data)}
     wasd(
         //cout << "Use this for problems where you have to go up, down, left right" << endl;
     ) */
-zz
+
     return 0;
 }
