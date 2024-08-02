@@ -325,12 +325,16 @@ struct UndirectedWeightedTree {
     }
 };
 
+//vector for Floyd Warshall which gives you min distance from each node to every other node n.b. can make it vvpll with (path length,-weights) to minimize path whilst maximizing weights in case of ties
+//https://atcoder.jp/contests/abc286/submissions/56220080
 vector<vector<ll> >ddist;
 
 //n^3 time complexity
 void floydWarshall(ll n) {
     // Step 1: Initialization
     ddist.assign(n, vector<ll>(n, INF));
+
+    //Distance to self is always 0
     for (int i = 0; i < n; i++) {
         ddist[i][i] = 0;
     }
