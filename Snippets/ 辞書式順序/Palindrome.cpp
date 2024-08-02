@@ -33,3 +33,31 @@ bool isPalindrome(long long n) {
 
     return original == reversed;
 }
+
+//Works even for N > 1e8
+string findNthPalindrome(ll N){
+    if(N==1){
+        return "0";
+    }
+
+    N--;
+
+    //find number of numbers in current block
+    for(int i = 1;;i++){
+        ll numInBlock=9;
+        numInBlock*=pow(10,((i-1)/2));
+        if(N>numInBlock){
+            N-=numInBlock;
+            continue;
+        }
+        N+=((numInBlock/9)-1);
+        string sN = to_string(N);
+        // dbg(sN);
+        string OGsN = sN;
+        reverse(sN.begin(), sN.end());
+        if(i%2==1){
+            OGsN.pop_back();
+        }
+        return OGsN+sN;
+    }
+}
