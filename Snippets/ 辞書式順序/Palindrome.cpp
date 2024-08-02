@@ -35,6 +35,7 @@ bool isPalindrome(long long n) {
 }
 
 //Works even for N > 1e8
+//https://atcoder.jp/contests/abc363/submissions/56220823
 string findNthPalindrome(ll N){
     if(N==1){
         return "0";
