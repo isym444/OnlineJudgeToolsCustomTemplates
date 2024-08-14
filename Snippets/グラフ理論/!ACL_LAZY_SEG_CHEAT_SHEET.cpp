@@ -16,12 +16,12 @@ O(log n)
 
 // Lazy seg tree usage:
 //Initialization:
-long op(long f,long x){return f+x;}       // Defines the operation for the segment tree (sum operation).
-long e(){return 0L;}                      // Defines the identity element for the segment tree (0 for sum).
+ll op(long f,long x){return f+x;}       // Defines the operation for the segment tree (sum operation).
+ll e(){return 0L;}                      // Defines the identity element for the segment tree (0 for sum).
 
-vector<long>A(N);                     // Create a vector to hold the initial value at each element of segment tree.
+vector<ll>A(N);                     // Create a vector to hold the initial value at each element of segment tree.
 
-atcoder::lazy_segtree<long,op,e,long,op,op,e>seg(A); // Initialize a lazy segment tree with the array A.
+atcoder::lazy_segtree<ll,op,e,ll,op,op,e>seg(A); // Initialize a lazy segment tree with the array A.
 
 //Point query:
 seg.get(b);              // Get the current number at index `b`.
@@ -30,7 +30,7 @@ seg.get(b);              // Get the current number at index `b`.
 seg.prod(l, r);         // Returns the sum (or the result of the op function) of all elements in the range [l, r), i.e., from index l to index r-1.
 
 //Point set with specific value:
-seg.set(b, 0L);                   // Set the number of balls in box `b` to 0.
+seg.set(b, (ll)0);                   // Set the number of balls in box `b` to 0.
 
 //Range update with op function
 seg.apply(0, N, x);             // Update with `x` across all indexes using op function to update each index
