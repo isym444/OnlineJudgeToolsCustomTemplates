@@ -29,6 +29,14 @@ vector<pll> factor(ll x) {
     return ans;
 }
 
+
+map<ll,int> enumpr(ll n) {
+	map<ll,int> V;
+	for(ll i=2;i*i<=n;i++) while(n%i==0) V[i]++,n/=i;
+	if(n>1) V[n]++;
+	return V;
+}
+
 /* ==========================================================+ */
 
 const int MAXA = 5000006;
