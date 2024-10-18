@@ -1,3 +1,4 @@
+//3 points to right angle
 ll ax, ay, bx, by, cx, cy;
 cin >> ax >> ay >> bx >> by >> cx >> cy;
 ll AB2 = (bx-ax)*(bx-ax)+(by-ay)*(by-ay);

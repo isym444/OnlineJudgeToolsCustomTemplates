@@ -18,3 +18,5 @@ std::sort(locations.begin(), locations.end(), [](const loc &a, const loc &b) {
         return a.y < b.y; // Otherwise, sort by y
     });
  */
+
+

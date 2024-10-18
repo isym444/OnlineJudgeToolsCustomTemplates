@@ -44,3 +44,6 @@ void setBitsAtBinaryIndex(string ssmb, ll N){
             }
         }
 }
+
+
+

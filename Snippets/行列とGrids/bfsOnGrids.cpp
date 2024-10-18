@@ -1,5 +1,6 @@
 
 //https://atcoder.jp/contests/abc317/submissions/55385388
+//bfs on grids
 queue<tuple<ll,ll>> q;
 
 q.push(mp(Spos.first,Spos.second));
@@ -25,3 +26,7 @@ while(!q.empty()){
             }
         }
 }
+
+
+
+

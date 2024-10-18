@@ -8,3 +8,9 @@ auto arithmeticSum = [&](ll L, ll R, ll d) -> ll {
     ll n = (R - L) / d + 1;
     return n * (L + R) / 2;
 };
+
+
+
+
+
+

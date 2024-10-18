@@ -1,4 +1,5 @@
-//Takes in a point and returns vector<pair<int, int>> containing all points relative to og point that form a square given an initial dx & dy between og_point and one other point n.b. always rotating in same direction
+//Takes in a point and returns vector<pair<int, int>> containing all points relative to og point that form a 
+//square given an initial dx & dy between og_point and one other point n.b. always rotating in same direction
 vector<pair<int, int>> generateSquarePoints(int x, int y, int dx, int dy) {
     pair<int, int> p1, p2, p3, p4;
     
@@ -15,3 +16,6 @@ vector<pair<int, int>> generateSquarePoints(int x, int y, int dx, int dy) {
     vector<pair<int, int>> points = {p1, p2, p3, p4};
     return points;
 }
+
+
+

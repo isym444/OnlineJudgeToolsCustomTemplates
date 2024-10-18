@@ -10,3 +10,7 @@ vector<int> dy_wasd = {0,0,1,-1};
 ll uniquexy(ll x, ll y){
     return x*W+y;
 }
+
+
+
+

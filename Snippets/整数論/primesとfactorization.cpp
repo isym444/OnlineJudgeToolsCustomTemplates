@@ -29,8 +29,8 @@ vector<pll> factor(ll x) {
     return ans;
 }
 
-
-map<ll,int> enumpr(ll n) {
+//return prime factorization of n as map where key is factor and value is exponent of factor USE OVER ABOVE
+map<ll,int> factor(ll n) {
 	map<ll,int> V;
 	for(ll i=2;i*i<=n;i++) while(n%i==0) V[i]++,n/=i;
 	if(n>1) V[n]++;

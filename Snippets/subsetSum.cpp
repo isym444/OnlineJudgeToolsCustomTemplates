@@ -7,3 +7,6 @@ int subsetSum(vector<int> A, int S){
     }
     return dp[0];
 }
+
+
+

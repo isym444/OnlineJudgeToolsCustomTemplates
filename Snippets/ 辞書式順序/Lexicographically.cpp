@@ -14,3 +14,6 @@ void lexperm(vector<ll> vec){
         std::cout << "\n";
     }
 }
+
+
+

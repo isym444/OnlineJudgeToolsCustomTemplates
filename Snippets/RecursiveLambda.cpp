@@ -22,3 +22,8 @@ auto find = [&](auto&& self, int x) -> int {
         return parent[x] = self(self, parent[x]);
     }
 };
+
+
+
+
+
