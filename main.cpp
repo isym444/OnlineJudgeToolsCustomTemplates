@@ -47,6 +47,7 @@
             '#include <type_traits>',
             '#include <chrono>',
             '#include <list>',
+            '#include <complex>',
             '#include <atcoder/all>'
         ])
     if not shutil.which("clang-format"):
