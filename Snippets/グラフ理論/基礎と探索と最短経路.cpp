@@ -132,6 +132,7 @@ void bfs(ll start)
 }
 
 //bfs function returning vector with the shortest paths from start node to every other node
+//time complexity: V+E
 vector<ll> bfs_shortest_paths(ll start) {
     vector<long long> distances(g.size()+1, -1);
     queue<int> q;
