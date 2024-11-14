@@ -18,6 +18,7 @@ ll nfe(ll n, ll p) {
 }
 
 //return prime factorization of x as vector<pair<ll,ll>> -> use this if possible over sieve.Factorize(x) as easier to deal with
+//time complexity O(sqrt(N))
 vector<pll> factor(ll x) {
     vector<pll> ans;
     for(ll i = 2; i * i <= x; i++)
@@ -30,6 +31,7 @@ vector<pll> factor(ll x) {
 }
 
 //return prime factorization of n as map where key is factor and value is exponent of factor USE OVER ABOVE
+//time complexity O(sqrt(N))
 map<ll,int> factor(ll n) {
 	map<ll,int> V;
 	for(ll i=2;i*i<=n;i++) while(n%i==0) V[i]++,n/=i;
