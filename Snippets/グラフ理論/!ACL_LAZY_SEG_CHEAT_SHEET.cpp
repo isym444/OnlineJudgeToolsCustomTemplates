@@ -17,7 +17,7 @@ O(log n)
 // Lazy seg tree usage:
 //Initialization:
 ll op(long f,long x){return f+x;}       // Defines the operation for the segment tree (sum operation).
-ll e(){return 0L;}                      // Defines the identity element for the segment tree (0 for sum).
+ll e(){return 0L;}                      // Defines the identity element for the segment tree (0 for sum, 0 for xor, 0 for GCD, 1 for LCM, 1 for multiplication, INF for min, -INF for max).
 
 vector<ll>A(N);                     // Create a vector to hold the initial value at each element of segment tree.
 
