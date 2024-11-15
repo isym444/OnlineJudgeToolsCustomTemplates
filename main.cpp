@@ -83,6 +83,8 @@ using namespace atcoder;
 #define fojj(non_incl_to) for(int j=0;j<(non_incl_to);j++)
 #define fok(from,non_incl_to) for(int k=from;k<(non_incl_to);k++)
 #define fokk(non_incl_to) for(int k=0;k<(non_incl_to);k++)
+#define fol(from,non_incl_to) for(int l=from;l<(non_incl_to);l++)
+#define foll(non_incl_to) for(int l=0;l<(non_incl_to);l++)
 #define fa(x, dataStructure) for(auto x : dataStructure)
 #define fx(dataStructure) for(auto x : dataStructure)
 
