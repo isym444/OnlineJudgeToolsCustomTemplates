@@ -1,4 +1,5 @@
 // UnionFind Tree (0-indexed), based on size of each disjoint set
+// find, unite, count, same: O(1)
 struct UnionFind {
     std::vector<int> par, cou;
     UnionFind(int N = 0) : par(N), cou(N, 1) { iota(par.begin(), par.end(), 0); }
