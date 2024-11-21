@@ -15,14 +15,10 @@
     data["config"]["rep_macro"] = "REP"
     data["config"]["long_long_int"] = "long long"
     if platform.system() == "Linux" and "clang" not in os.environ.get("CXX", "g++"):
-<<<<<<< HEAD
-        include = "#include <bits/stdc++.h>"
-=======
         include = "\n".join([
             "#include <bits/stdc++.h>",
             '#include <atcoder/all>'
             ])
->>>>>>> 73f71ed (Updated template)
     else:
         include = "\n".join([
             "#include <iostream>",
