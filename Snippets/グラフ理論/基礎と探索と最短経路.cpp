@@ -63,6 +63,50 @@ vector<ll> dijkstra(ll start) {
     return dist;
 }
 
+// Can use Dijkstra with dynamically changing edge weights depending on order of traversal up to a certain node:
+// https://atcoder.jp/contests/abc192/tasks/abc192_e
+
+struct edge{
+    ll to,time,departMultiples;
+};
+
+int main(){
+    ll N,M,X,Y;
+    cin >> N >> M >> X >> Y;
+    X--;
+    Y--;
+    vector<vector<edge>> g(N);
+    foi(0,M){
+        ll a,b,t,k;
+        cin >> a >> b >> t >> k;
+        a--;
+        b--;
+        g[a].pb({b,t,k});
+        g[b].pb({a,t,k});
+    }
+    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
+    vll distance(N,INF);
+    pq.emplace(mp(0,X)); // distance, node
+    while(!pq.empty()){
+        auto [qd, qnode] = pq.top();
+        pq.pop();
+        if(qd>distance[qnode]) continue;
+        for(const auto& [nto, ntime, ndepartMultiples] : g[qnode]){
+            ll timeArriveNext = ceildiv(qd,ndepartMultiples)*ndepartMultiples+ntime;
+            if(timeArriveNext<distance[nto]){
+                pq.emplace(mp(timeArriveNext,nto));
+                distance[nto]=timeArriveNext;
+            }
+        }
+    }
+    if(distance[Y]==INF){
+        cout << -1 << endl;
+        return 0;
+    }
+    cout << distance[Y] << endl;
+    return 0;
+}
+
 //Bellman Ford Graph: L node, R node, weight of edge between L&R
 vector<tuple<int, int, ll>> bfg;
 
