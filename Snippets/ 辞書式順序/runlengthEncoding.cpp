@@ -4,7 +4,7 @@ vector<pair<char, int>> runLengthEncoding(string s) {
 	vector<pair<char, int>> res;
 	char pre = s[0];
 	int cnt = 1;
-	rep(i, 1, n) {
+	foi(1, n) {
 		if (pre != s[i]) {
 			res.push_back({ pre, cnt });
 			pre = s[i];
