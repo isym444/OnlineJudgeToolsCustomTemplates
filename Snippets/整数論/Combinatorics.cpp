@@ -1,4 +1,4 @@
-//nCx with MINT (USE OVER THE ONE BELOW!)
+//nCx with MINT (USE OVER struct combination BELOW!)
 mint choose(int n, int a) {
   mint x = 1, y = 1;
   rep(i,a) {
@@ -7,6 +7,53 @@ mint choose(int n, int a) {
   }
   return x / y;
 }
+
+
+// number of ways to choose a elements out of n distinct elements without regard to order.
+// Counts the number of subsets of size a from a set of n distinct elements.
+// Applicable when selecting items without replacement and where the order doesn't matter.
+mint choose(int n, int a) {
+    mint x = 1, y = 1;
+    rep(i,a) {
+        x *= n-i;
+        y *= i+1;
+    }
+    return x / y;
+}
+
+// ncx where can have 0 in a box
+mint f2(ll items,ll boxes){
+    return(choose(items+boxes-1,boxes-1));
+}
+
+// ncx where must have 1 at least in every box
+mint f(ll items,ll boxes){
+    // if(a<b) return 0;
+    if(boxes==0) return 0; // cannot place items if there are no boxes!
+    return f2(items-boxes,boxes);
+}
+
+int main(){
+    ll N,K;
+    cin >> N >> K;
+    ll blue = K;
+    ll red = N-K;
+
+    foi(1,K+1){
+        mint S=0;
+        S+=f(red, i-1);
+        S+=f(red, i);
+        S+=f(red, i);
+        S+=f(red, i+1);
+        mint ans=f(blue,i)*S;
+        cout << ans << endl;
+    }
+    return 0;
+}
+
+
+
+
 
 //nCx with MINT (use with minimal mint)
 //how to use:
