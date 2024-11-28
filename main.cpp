@@ -105,6 +105,7 @@ using namespace atcoder;
 #define mp make_pair
 #define mt make_tuple
 #define pb push_back
+#define nyan ios::sync_with_stdio(false);cin.tie(nullptr);cout<<fixed<<setprecision(15);
 ll INF=LLONG_MAX;
 
 /*/---------------------------Data Structures----------------------/*/
