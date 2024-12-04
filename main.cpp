@@ -216,7 +216,7 @@ template <class OStream, class T> OStream &operator<<(OStream &os, const std::un
 template <class OStream, class T, class U> OStream &operator<<(OStream &os, const std::pair<T, U> &pa) { return os << '(' << pa.first << ',' << pa.second << ')'; }
 template <class OStream, class TK, class TV> OStream &operator<<(OStream &os, const std::map<TK, TV> &mp) { os << '{'; for (auto v : mp) os << v.first << "=>" << v.second << ','; os << '}'; return os; }
 template <class OStream, class TK, class TV, class TH> OStream &operator<<(OStream &os, const std::unordered_map<TK, TV, TH> &mp) { os << '{'; for (auto v : mp) os << v.first << "=>" << v.second << ','; os << '}'; return os; }
-
+template <class OStream, class T, size_t rows, size_t cols> OStream &operator<<(OStream &os, T (&arr)[rows][cols]) { os << '['; for (size_t i = 0; i < rows; ++i) { if (i > 0) os << ','; os << '['; for (size_t j = 0; j < cols; ++j) { if (j > 0) os << ','; os << arr[i][j]; } os << ']'; } os << ']'; return os; }
 
 void setIO(string name = "")
 { // name is nonempty for USACO file I/O
