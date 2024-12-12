@@ -33,7 +33,7 @@ seg.prod(l, r);         // Returns the sum (or the result of the op function) of
 seg.set(b, (ll)0);                   // Set the number of balls in box `b` to 0.
 
 //Range update with op function
-seg.apply(0, N, x);             // Update with `x` across all indexes using op function to update each index
+seg.apply(0, N, x);             // Update with `x` across all indexes using op function to update each index N.B. if op is addition, then this will add x to current value at each index in range
 
 
 //NOTE on lazy_segtree initialization:
