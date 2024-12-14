@@ -9,6 +9,7 @@ mint choose(int n, int a) {
 }
 
 
+// number of ways to select x boxes from n boxes without regard to the order of selection
 // number of ways to choose a elements out of n distinct elements without regard to order.
 // Counts the number of subsets of size a from a set of n distinct elements.
 // Applicable when selecting items without replacement and where the order doesn't matter.

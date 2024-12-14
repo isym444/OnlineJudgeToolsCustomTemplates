@@ -33,7 +33,7 @@ seg.prod(l, r);         // Returns the sum (or the result of the op function) of
 seg.set(b, (ll)0);                   // Set the number of balls in box `b` to 0.
 
 //Range update with op function
-seg.apply(0, N, x);             // Update with `x` across all indexes using op function to update each index
+seg.apply(0, N, x);             // Update with `x` across all indexes using op function to update each index N.B. if op is addition, then this will add x to current value at each index in range
 
 
 //NOTE on lazy_segtree initialization:
@@ -41,26 +41,32 @@ seg.apply(0, N, x);             // Update with `x` across all indexes using op f
 
 Type of the segment tree's data elements.
 In this case, long is the type of the values stored in the segment tree nodes. Each node in the segment tree will store a long integer value.
+
 Second Template Parameter (op):
 
 Binary operation function used for combining two elements.
 The op function defines how two segments of the tree are combined. Here, it performs an addition (op(long f, long x) { return f + x; }), which means the segment tree is used to perform range sum queries.
+
 Third Template Parameter (e):
 
 Identity element function for the operation defined in op.
 The e function returns the identity element for the operation. For addition, the identity element is 0 (e() { return 0L; }), meaning adding 0 to any number will not change its value. This is important for initializing and propagating values in the segment tree.
+
 Fourth Template Parameter (long):
 
 Type of the lazy propagation values.
 This defines the type of the value used for lazy updates. Since we want to propagate increments to range updates, it is also a long in this case.
+
 Fifth Template Parameter (op):
 
 Binary operation function used to apply lazy updates.
 This is the same op function used earlier. It defines how a lazy value (in this case, an increment) should be applied to a segment's value. Since our operation is addition, it just adds the lazy value to the segment's value.
+
 Sixth Template Parameter (op):
 
 Composition function for combining lazy values**.
 This defines how to combine two lazy values. Since our lazy values are increments (additions), the operation to combine two increments is also addition. Thus, the same op function is reused.
+
 Seventh Template Parameter (e):
 
 Identity element for the lazy propagation values.

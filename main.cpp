@@ -219,6 +219,7 @@ template <class OStream, class TK, class TV> OStream &operator<<(OStream &os, co
 template <class OStream, class TK, class TV, class TH> OStream &operator<<(OStream &os, const std::unordered_map<TK, TV, TH> &mp) { os << '{'; for (auto v : mp) os << v.first << "=>" << v.second << ','; os << '}'; return os; }
 template <class OStream> OStream &operator<<(OStream &os, __int128 v) { if (v == 0) return os << "0"; if (v < 0) os << '-', v = -v; string s; while (v > 0) s.push_back(v % 10 + '0'), v /= 10; reverse(s.begin(), s.end()); return os << s; }
 template <class IStream> IStream &operator>>(IStream &is, __int128 &v) { string s; is >> s; v = 0; bool neg = s[0] == '-'; for (int i = neg; i < s.size(); ++i) v = v * 10 + (s[i] - '0'); if (neg) v = -v; return is; }
+template <class OStream, class T, size_t rows, size_t cols> OStream &operator<<(OStream &os, T (&arr)[rows][cols]) { os << '['; for (size_t i = 0; i < rows; ++i) { if (i > 0) os << ','; os << '['; for (size_t j = 0; j < cols; ++j) { if (j > 0) os << ','; os << arr[i][j]; } os << ']'; } os << ']'; return os; }
 
 void setIO(string name = "")
 { // name is nonempty for USACO file I/O
