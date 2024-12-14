@@ -92,7 +92,8 @@ using namespace atcoder;
 #define fx(dataStructure) for(auto x : dataStructure)
 
 /*/---------------------------Abbreviations----------------------/*/
-#define ll long long
+// #define ll long long
+#define ll __int128
 #define sz(x) (int)(x).size()
 #define fi first
 #define sec second
@@ -216,7 +217,8 @@ template <class OStream, class T> OStream &operator<<(OStream &os, const std::un
 template <class OStream, class T, class U> OStream &operator<<(OStream &os, const std::pair<T, U> &pa) { return os << '(' << pa.first << ',' << pa.second << ')'; }
 template <class OStream, class TK, class TV> OStream &operator<<(OStream &os, const std::map<TK, TV> &mp) { os << '{'; for (auto v : mp) os << v.first << "=>" << v.second << ','; os << '}'; return os; }
 template <class OStream, class TK, class TV, class TH> OStream &operator<<(OStream &os, const std::unordered_map<TK, TV, TH> &mp) { os << '{'; for (auto v : mp) os << v.first << "=>" << v.second << ','; os << '}'; return os; }
-
+template <class OStream> OStream &operator<<(OStream &os, __int128 v) { if (v == 0) return os << "0"; if (v < 0) os << '-', v = -v; string s; while (v > 0) s.push_back(v % 10 + '0'), v /= 10; reverse(s.begin(), s.end()); return os << s; }
+template <class IStream> IStream &operator>>(IStream &is, __int128 &v) { string s; is >> s; v = 0; bool neg = s[0] == '-'; for (int i = neg; i < s.size(); ++i) v = v * 10 + (s[i] - '0'); if (neg) v = -v; return is; }
 
 void setIO(string name = "")
 { // name is nonempty for USACO file I/O
