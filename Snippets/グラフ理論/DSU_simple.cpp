@@ -13,4 +13,11 @@ struct UnionFind {
     }
     int count(int x) { return cou[find(x)]; }
     bool same(int x, int y) { return find(x) == find(y); }
+    vector<ll> getLeaders() {
+        set<ll> leaders;
+        for (int i = 0; i < par.size(); i++) {
+            leaders.insert(find(i));
+        }
+        return vector<ll>(leaders.begin(), leaders.end());
+    } 
 };
