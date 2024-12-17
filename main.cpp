@@ -187,39 +187,39 @@ struct custom_hash {
 };
 
 /*/---------------------------IO(Debugging)----------------------/*/
-template<class T> istream& operator >> (istream &is, vector<T>& V) {
-    for(auto &e : V)
-        is >> e;
-    return is;
-}
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &vec);
-template <class OStream, class T, size_t sz> OStream &operator<<(OStream &os, const std::array<T, sz> &arr);
-template <class OStream, class T, class TH> OStream &operator<<(OStream &os, const std::unordered_set<T, TH> &vec);
-template <class OStream, class T, class U> OStream &operator<<(OStream &os, const pair<T, U> &pa);
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::deque<T> &vec);
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::set<T> &vec);
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::multiset<T> &vec);
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::unordered_multiset<T> &vec);
-template <class OStream, class T, class U> OStream &operator<<(OStream &os, const std::pair<T, U> &pa);
-template <class OStream, class TK, class TV> OStream &operator<<(OStream &os, const std::map<TK, TV> &mp);
-template <class OStream, class TK, class TV, class TH> OStream &operator<<(OStream &os, const std::unordered_map<TK, TV, TH> &mp);
-template <class OStream, class... T> OStream &operator<<(OStream &os, const std::tuple<T...> &tpl);
 
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &vec) { os << '['; for (auto v : vec) os << v << ','; os << ']'; return os; }
-template <class OStream, class T, size_t sz> OStream &operator<<(OStream &os, const std::array<T, sz> &arr) { os << '['; for (auto v : arr) os << v << ','; os << ']'; return os; }
-template <class... T> std::istream &operator>>(std::istream &is, std::tuple<T...> &tpl) { std::apply([&is](auto &&... args) { ((is >> args), ...);}, tpl); return is; }
-template <class OStream, class... T> OStream &operator<<(OStream &os, const std::tuple<T...> &tpl) { os << '('; std::apply([&os](auto &&... args) { ((os << args << ','), ...);}, tpl); return os << ')'; }
-template <class OStream, class T, class TH> OStream &operator<<(OStream &os, const std::unordered_set<T, TH> &vec) { os << '{'; for (auto v : vec) os << v << ','; os << '}'; return os; }
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::deque<T> &vec) { os << "deq["; for (auto v : vec) os << v << ','; os << ']'; return os; }
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::set<T> &vec) { os << '{'; for (auto v : vec) os << v << ','; os << '}'; return os; }
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::multiset<T> &vec) { os << '{'; for (auto v : vec) os << v << ','; os << '}'; return os; }
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::unordered_multiset<T> &vec) { os << '{'; for (auto v : vec) os << v << ','; os << '}'; return os; }
-template <class OStream, class T, class U> OStream &operator<<(OStream &os, const std::pair<T, U> &pa) { return os << '(' << pa.first << ',' << pa.second << ')'; }
-template <class OStream, class TK, class TV> OStream &operator<<(OStream &os, const std::map<TK, TV> &mp) { os << '{'; for (auto v : mp) os << v.first << "=>" << v.second << ','; os << '}'; return os; }
-template <class OStream, class TK, class TV, class TH> OStream &operator<<(OStream &os, const std::unordered_map<TK, TV, TH> &mp) { os << '{'; for (auto v : mp) os << v.first << "=>" << v.second << ','; os << '}'; return os; }
-template <class OStream> OStream &operator<<(OStream &os, __int128 v) { if (v == 0) return os << "0"; if (v < 0) os << '-', v = -v; string s; while (v > 0) s.push_back(v % 10 + '0'), v /= 10; reverse(s.begin(), s.end()); return os << s; }
-template <class IStream> IStream &operator>>(IStream &is, __int128 &v) { string s; is >> s; v = 0; bool neg = s[0] == '-'; for (int i = neg; i < s.size(); ++i) v = v * 10 + (s[i] - '0'); if (neg) v = -v; return is; }
-template <class OStream, class T, size_t rows, size_t cols> OStream &operator<<(OStream &os, T (&arr)[rows][cols]) { os << '['; for (size_t i = 0; i < rows; ++i) { if (i > 0) os << ','; os << '['; for (size_t j = 0; j < cols; ++j) { if (j > 0) os << ','; os << arr[i][j]; } os << ']'; } os << ']'; return os; }
+// __int128 I/O:
+inline istream &operator>>(istream &is, __int128 &v) {
+    string s; is >> s; v = 0; bool neg = (!s.empty() && s[0] == '-');
+    for (int i = neg; i < (int)s.size(); i++) v = v * 10 + (s[i] - '0');
+    if (neg) v = -v; return is;
+}
+inline ostream &operator<<(ostream &os, __int128 v) {
+    if (v == 0) return os << "0";
+    bool neg = (v < 0); if (neg) { os << '-'; v = -v; }
+    string s; while (v > 0) { s.push_back(char('0' + int(v % 10))); v /= 10; }
+    reverse(s.begin(), s.end()); return os << s;
+}
+
+// Vector reading:
+template<class T> inline istream &operator>>(istream &is, vector<T> &V) { for (auto &e : V) is >> e; return is; }
+
+// Container printing:
+template<class OStream,class T> inline OStream &operator<<(OStream &os,const vector<T> &vec){os<<'[';for(auto &v:vec)os<<v<<',';os<<']';return os;}
+template<class OStream,class T,size_t sz> inline OStream &operator<<(OStream &os,const array<T,sz> &arr){os<<'[';for(auto &v:arr)os<<v<<',';os<<']';return os;}
+template<class OStream,class T,class TH> inline OStream &operator<<(OStream &os,const unordered_set<T,TH>& st){os<<'{';for(auto &v:st)os<<v<<',';os<<'}';return os;}
+template<class OStream,class T> inline OStream &operator<<(OStream &os,const deque<T> &dq){os<<"deq[";for(auto &v:dq)os<<v<<',';os<<']';return os;}
+template<class OStream,class T> inline OStream &operator<<(OStream &os,const set<T> &st){os<<'{';for(auto &v:st)os<<v<<',';os<<'}';return os;}
+template<class OStream,class T> inline OStream &operator<<(OStream &os,const multiset<T> &st){os<<'{';for(auto &v:st)os<<v<<',';os<<'}';return os;}
+template<class OStream,class T> inline OStream &operator<<(OStream &os,const unordered_multiset<T> &st){os<<'{';for(auto &v:st)os<<v<<',';os<<'}';return os;}
+template<class OStream,class T,class U> inline OStream &operator<<(OStream &os,const pair<T,U> &pa){return os<<'('<<pa.first<<','<<pa.second<<')';}
+template<class OStream,class TK,class TV> inline OStream &operator<<(OStream &os,const map<TK,TV> &mp){os<<'{';for(auto &m:mp)os<<m.first<<"=>"<<m.second<<',';os<<'}';return os;}
+template<class OStream,class TK,class TV,class TH> inline OStream &operator<<(OStream &os,const unordered_map<TK,TV,TH> &mp){os<<'{';for(auto &m:mp)os<<m.first<<"=>"<<m.second<<',';os<<'}';return os;}
+template<class OStream,class T,size_t rows,size_t cols> inline OStream &operator<<(OStream &os,T (&arr)[rows][cols]){os<<'[';for(size_t i=0;i<rows;i++){if(i>0)os<<',';os<<'[';for(size_t j=0;j<cols;j++){if(j>0)os<<',';os<<arr[i][j];}os<<']';}os<<']';return os;}
+
+// Tuple printing/reading:
+template<class... T> inline istream &operator>>(istream &is, tuple<T...> &tpl){ std::apply([&is](auto &&... args){ ((is >> args), ...); }, tpl); return is; }
+template<class OStream,class... T> inline OStream &operator<<(OStream &os,const tuple<T...> &tpl){os<<'(';std::apply([&os](auto &&... args){((os<<args<<','),...);},tpl);return os<<')';}
 
 void setIO(string name = "")
 { // name is nonempty for USACO file I/O
