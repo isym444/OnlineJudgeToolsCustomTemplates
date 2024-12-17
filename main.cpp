@@ -115,8 +115,8 @@ typedef pair<ll, ll> pl;
 typedef list<ll> dll;
 using pll = pair<ll,ll>;
 using pi = pair<int,int>;
-typedef vector<long long> vll;
-typedef std::vector<std::vector<long long>> vvll;
+typedef vector<ll> vll;
+typedef std::vector<std::vector<ll>> vvll;
 
 template<typename T> using vc = vector<T>;
 template<typename T> using vc = vector<T>;
