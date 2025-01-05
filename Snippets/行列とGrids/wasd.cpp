@@ -4,8 +4,8 @@
 //for iterating over possible directions from a square in a 2d array -> for both wasd & including diagonals
 vector<int> dx = {1, 0, -1, 0, 1, 1, -1, -1};
 vector<int> dy = {0, 1, 0, -1, 1, -1, 1, -1};
-vector<int> dx_wasd = {1,-1,0,0};
-vector<int> dy_wasd = {0,0,1,-1};
+vector<int> dx = {1,-1,0,0};
+vector<int> dy = {0,0,1,-1};
 
 ll uniquexy(ll x, ll y){
     return x*W+y;
