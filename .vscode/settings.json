@@ -4,5 +4,6 @@
         "vector": "cpp",
         "iosfwd": "cpp",
         "execution": "cpp"
-    }
+    },
+    "cph.general.saveLocation": ""
 }

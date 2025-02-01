@@ -88,8 +88,8 @@ using namespace atcoder;
 #define fokk(non_incl_to) for(int k=0;k<(non_incl_to);k++)
 #define fol(from,non_incl_to) for(int l=from;l<(non_incl_to);l++)
 #define foll(non_incl_to) for(int l=0;l<(non_incl_to);l++)
-#define fa(x, dataStructure) for(auto x : dataStructure)
-#define fx(dataStructure) for(auto x : dataStructure)
+#define fa(x, dataStructure) for(auto &x : dataStructure)
+#define fx(dataStructure) for(auto &x : dataStructure)
 
 /*/---------------------------Abbreviations----------------------/*/
 // #define ll long long
