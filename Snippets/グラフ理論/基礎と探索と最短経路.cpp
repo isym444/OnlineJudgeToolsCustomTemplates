@@ -31,6 +31,7 @@ vector<ll> dijkstra(ll start) {
     vector<ll> dist(wg.size(), INF);  // Distance from start to each node
     //arguments: 1) type of elements pq will store 2) underlying container to be used by pq 
     //3) comparison function to specify order of elements in pq (default is less with largest element at top i.e. max-heap vs min-heap below)
+    // priority queue stores distance_to_node, node_index
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
     dist[start] = 0;
     pq.push({0, start});  // {distance, node}
@@ -42,12 +43,16 @@ vector<ll> dijkstra(ll start) {
         pq.pop();
 
         // If the distance in priority queue is larger, we have already found a better path
-        if (currentDist > dist[currentNode]) {
-            continue;
-        }
+        if (currentDist > dist[currentNode]) continue;
+
         /* Optimization to try if TLEing instead of if statement above
         if (cdist != dist[node]) { continue; }*/
     
+        // if we reach here, this means that we have a new shortest path to the current node
+        // so need to add/re-add all the neighbors of the current node to the priority queue (relaxation step i.e. update shortest distance to all nodes n.b. this relaxation step isn't done here immediately but when we pop from PQ if distance for that node at that point in the priority queue still shortest distance)
+        // if they were already in the priority queue, they will now be ignored when we pop them from PQ
+        // by if(currentDist > dist[nextNode]) continue line above
+        // this is easier implementation than manually updating values of nodes already in the priority queue
         for (auto &neighbor : wg[currentNode]) {
             ll nextNode = neighbor.first;
             ll weight = neighbor.second;
@@ -108,18 +113,29 @@ int main(){
 }
 
 //Bellman Ford Graph: L node, R node, weight of edge between L&R
+// bfg is a vector of tuples representing edges in the format (start_node, end_node, weight).
 vector<tuple<int, int, ll>> bfg;
 
 vector<ll> bellmanDistances;
-// Function to run Bellman-Ford algorithm given start node and # vertices, saves min distances in bellmanDistances vector
+
+// Function to run Bellman-Ford algorithm given start node and # vertices
+// Saves min distances between start node and all other nodes in bellmanDistances vector
+// Returns false if it detects a negative weight cycle
 bool bellmanFord(ll start, ll V) {
     vector<ll> distance(V, INF);
     bellmanDistances.resize(V, INF);
     bellmanDistances[start] = 0;
+    // a,b,w define an edge: starting node, ending node, weight
     ll a,b,w;
+    // The longest possible shortest path in a graph (without negative cycles) can have at most V-1 edges
+    // This will happen when visit every node taking shortest path between each pair of nodes
+    // s.t. this is shortest path between start node and another node
     for (ll i = 1; i <= V - 1; i++) {
+        // For every edge in the graph
         for (const auto& e : bfg) {
+            // equivalent to auto& [a,b,w] = e;
             tie(a, b, w) = e;
+            // relaxation step
             bellmanDistances[b]=min(bellmanDistances[b],bellmanDistances[a]+w);
             /* if (bellmanDistances[a] + w < bellmanDistances[b]) {
                 bellmanDistances[b] = bellmanDistances[a] + w;
@@ -128,6 +144,9 @@ bool bellmanFord(ll start, ll V) {
     }
 
     // Check for negative-weight cycles (negative sum of edges in a cycle)
+    // This final loop checks if any edge can still be relaxed:
+    // This would only be possible if there is a negative weight cycle
+    // Which would result in "shortest path" to a node being able to be updated infinitely
     for (const auto& e : bfg) {
         tie(a, b, w) = e;
         if (bellmanDistances[a] + w < bellmanDistances[b]) {

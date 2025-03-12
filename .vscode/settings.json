@@ -3,7 +3,8 @@
         "iostream": "cpp",
         "vector": "cpp",
         "iosfwd": "cpp",
-        "execution": "cpp"
+        "execution": "cpp",
+        "tuple": "cpp"
     },
     "cph.general.saveLocation": ""
 }

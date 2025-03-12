@@ -34,6 +34,8 @@ rep(i,m) {
 }
 
 // Priority queue to get the smallest element first
+// This ensures we get the lexicographically smallest topological order
+// If we use a queue instead, we get A topological order, not necessarily the smallest
 priority_queue<int, vector<int>, greater<int>> q;
 rep(i,n) if (indeg[i] == 0) q.push(i); // Add nodes with zero in-degree
 
@@ -47,6 +49,9 @@ while (!q.empty()) {
     }
 }
 
+// If ans doesn't have all the nodes, this means at some point in the while loop
+// we didn't have any nodes with in-degree zero, i.e. there is a cycle
+// so while loop exited before all nodes were able to be added to ans
 if (ans.size() != n) cout << -1 << endl; //h Check if Graph has a cycle
 else {
     for (int v : ans) cout << v + 1 << " "; // Convert back to 1-based indexing
@@ -57,6 +62,20 @@ else {
 //-------------------------------------------------------
 
 //h check there is only one valid topological order
+// if the topological order = chain of nodes in the graph then topological order is unique
+// otherwise there are multiple topological orders
+// e.g. if you have:
+/* a
+  / \
+ v   v
+ b   e
+  \ /
+   v
+   d
+ */
+// then topological order could be a, b, e, d or a, e, b, d
+// so there are multiple topological orders
+// this is determined because b&e are adjacent in topological order but there is no direct edge between b&e
 foi(0,N-1) {
     int a = ans[i], b = ans[i+1];
     bool ok = false;
