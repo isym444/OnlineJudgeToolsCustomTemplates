@@ -34,6 +34,40 @@ bool isPalindrome(long long n) {
     return original == reversed;
 }
 
+
+// Find one shortest palindrome that has S as its prefix.
+// https://atcoder.jp/contests/abc398/tasks/abc398_f
+// Z algorithm:
+// b ababba|abbabab
+// 14030120|0150301
+// so you check in R block
+// first that reaches to very end
+// that will tell you longest suffix that is a palindrome
+// so you just append the remaining prefix to end to build shortest palindrome
+int main(){
+    string S;
+    cin >> S;
+    string T = S;
+    reverse(all(S));
+    string finS = S+T;
+    auto z = z_algorithm(finS);
+    int j = 0;
+    int ans = -1;
+    foi(S.length(),finS.length()){
+        if(z[i] == T.length()-j){
+            ans = T.length()-j;
+            break;
+        }
+        j++;
+    }
+    for(int i = T.size()-ans-1; i>=0; i--){
+        T+=T[i];
+    }
+    cout << T << endl;
+    return 0;
+}
+
+
 //Works even for N > 1e8
 //https://atcoder.jp/contests/abc363/submissions/56220823
 string findNthPalindrome(ll N){
