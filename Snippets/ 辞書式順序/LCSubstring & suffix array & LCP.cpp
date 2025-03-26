@@ -1,3 +1,31 @@
+
+
+// longest repeated substring within a single string
+cin >> S;
+auto sa = suffix_array(S);
+auto lcp = lcp_array(S,sa);
+// largest value in lcp is the length of the longest repeated substring
+
+
+// Count of distinct substrings in a single string:
+
+cin >> S;
+auto sa = suffix_array(S);
+dbg(sa);
+auto lcp = lcp_array(S, sa);
+dbg(lcp);
+ll n = S.length();
+ll ans = n*(n+1)/2;
+dbg(ans);
+ll sum=0;
+fx(lcp){
+    sum+=x;
+}
+ans-=sum;
+cout << ans << endl;
+
+
+
 string longestCommonSubstring(const string &s1, const string &s2) {
     int m = s1.size(), n = s2.size();
     vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0)); // DP table

@@ -27,12 +27,14 @@ void edge(ll originNode, ll destNode, ll weight){
 }
 
 //returns vector where each index is the shortest distance between the start node and node i
-vector<ll> dijkstra(ll start) {
+pair<vector<ll>,vector<ll>> dijkstra(ll start) {
     vector<ll> dist(wg.size(), INF);  // Distance from start to each node
     //arguments: 1) type of elements pq will store 2) underlying container to be used by pq 
     //3) comparison function to specify order of elements in pq (default is less with largest element at top i.e. max-heap vs min-heap below)
     // priority queue stores distance_to_node, node_index
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
+    vector<ll> parent(wg.size(), -1); // -1 means no parent (i.e., unreachable)
+
     dist[start] = 0;
     pq.push({0, start});  // {distance, node}
 
@@ -60,12 +62,27 @@ vector<ll> dijkstra(ll start) {
 
             if (newDist < dist[nextNode]) {
                 dist[nextNode] = newDist;
+                parent[nextNode] = currentNode; // Track the path
                 pq.push({newDist, nextNode});
             }
         }
     }
 
     return dist;
+}
+
+// getPath from Dijkstra parent
+vector<ll> getPath(ll start, ll end, const vector<ll>& parent) {
+    vector<ll> path;
+    for (ll at = end; at != -1; at = parent[at]) {
+        path.push_back(at);
+    }
+    reverse(path.begin(), path.end());
+
+    if (path[0] != start) {
+        return {}; // No path found
+    }
+    return path;
 }
 
 // Can use Dijkstra with dynamically changing edge weights depending on order of traversal up to a certain node:
