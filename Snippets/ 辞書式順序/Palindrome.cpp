@@ -38,7 +38,7 @@ bool isPalindrome(long long n) {
 // Find one shortest palindrome that has S as its prefix.
 // https://atcoder.jp/contests/abc398/tasks/abc398_f
 // Z algorithm:
-// b ababba|abbabab
+// b ababba|abbabab (remember you first have to prepend the reverse of S to S)
 // 14030120|0150301
 // so you check in R block
 // first that reaches to very end
