@@ -242,6 +242,9 @@ void setIO(string name = "")
 // when you want to access the value of a mint, use x.val()
 // e.g. modint998244353 a = modint998244353(x); // `a` now represents `x` modulo 998244353
 // using mint = modint998244353;
+// to set custom modulus do the following:
+// using mint=modint;
+// mint::set_mod(1e9); // or to whatever you want inside the brackets
 // Custom operator<< for modint998244353
 // How to use the ACL modular exponentiation function?
 // e.g. to do pow(10,6)

@@ -1,14 +1,17 @@
 {
-    "files.associations": {
-        "iostream": "cpp",
-        "vector": "cpp",
-        "iosfwd": "cpp",
-        "execution": "cpp",
-        "tuple": "cpp",
-        "unordered_set": "cpp",
-        "__locale": "cpp",
-        "string": "cpp",
-        "string_view": "cpp"
-    },
-    "cph.general.saveLocation": ""
+  "files.associations": {
+    "iostream": "cpp",
+    "vector": "cpp",
+    "iosfwd": "cpp",
+    "execution": "cpp",
+    "tuple": "cpp",
+    "unordered_set": "cpp",
+    "__locale": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "iomanip": "cpp",
+    "__split_buffer": "cpp",
+    "deque": "cpp"
+  },
+  "cph.general.saveLocation": ""
 }
