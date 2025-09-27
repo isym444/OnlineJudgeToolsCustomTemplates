@@ -41,12 +41,6 @@ auto dfs = [&](int v)->int{
 dfs(0);
 
 
-
-
-
-
-
-
 void traverse(int v, const vector<Trie::Node>& nodes, string prefix) {
     // Print the current node
     cout << "Node at '" << prefix << "': cnt = " << nodes[v].cnt << ", children = ";
