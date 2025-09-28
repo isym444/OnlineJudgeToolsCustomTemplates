@@ -11,7 +11,13 @@
     "string_view": "cpp",
     "iomanip": "cpp",
     "__split_buffer": "cpp",
-    "deque": "cpp"
+    "deque": "cpp",
+    "array": "cpp",
+    "complex": "cpp",
+    "memory": "cpp",
+    "istream": "cpp",
+    "locale": "cpp",
+    "variant": "cpp"
   },
   "cph.general.saveLocation": ""
 }
