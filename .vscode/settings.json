@@ -17,7 +17,8 @@
     "memory": "cpp",
     "istream": "cpp",
     "locale": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "cmath": "cpp"
   },
   "cph.general.saveLocation": ""
 }

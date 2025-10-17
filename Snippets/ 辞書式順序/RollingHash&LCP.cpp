@@ -61,6 +61,23 @@ struct RollingHash
 
 using RH = RollingHash<1000000007>;
 
+// if combining into 2D rolling hash, will need the following arithmetic functions for the vertical hash calculations
+const int B2 = 911382323;
+static constexpr unsigned MOD = 1000000007u;
+// ===============
+auto addm = [&](unsigned a, unsigned b)
+{ a += b; if (a >= MOD) a -= MOD; return a; };
+auto subm = [&](unsigned a, unsigned b)
+{ return (a >= b) ? (a - b) : (a + MOD - b); };
+RH dummy(""); // just to use dummy.mul()
+
+// --- powers for vertical hash (length sr) ---
+vector<unsigned> powB2(sr + 1, 1);
+for (int i = 1; i <= sr; ++i)
+  powB2[i] = dummy.mul(powB2[i - 1], B2);
+// ===============
+
+// how to use in main
 main()
 {
   int n = in();
