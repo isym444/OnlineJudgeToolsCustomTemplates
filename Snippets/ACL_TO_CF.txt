@@ -1,0 +1,8 @@
+1) make sure you have correct include:
+e.g. #include <atcoder/lazysegtree>
+
+2) cpacl name_of_problem.cpp
+
+THEN
+
+3) Test/submit generated combined.cpp
