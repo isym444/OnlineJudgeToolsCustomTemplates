@@ -484,20 +484,37 @@ int indub(const std::vector<T> &v, const T &x)
 // h INSERT CODE SNIPPETS HERE
 /*/---------------------------INSERT CODE SNIPPETS HERE----------------------/*/
 
-/* stuff you should look for
-// Is initialized value also an answer? If so, should it be an answer if no further operations are applied?!
-// N = 0 or 1 (special cases)
-// Case when all elements the same
-// One large, many small e.g. 9111111111111111
-// One small, many large e.g. 1999999999999999
-// No valid answer exists (?should output -1)
-// Perform updates first, then query answer e.g. join overlapping intervals first
- * int overflow, array bounds
- * do smth instead of nothing and stay organized
- * WRITE STUFF DOWN
- * REWRITE AS EQUATIONS
- * GRAPH STUFF
- * DON'T GET STUCK ON ONE APPROACH
+/*
+ * ============================================================
+ * BUGS TO WATCH FOR
+ * ============================================================
+ * - Is the initialized value also a valid answer?
+ *   Should it count if no operations are applied?
+ * - No valid answer exists → should output -1?
+ * - Watch for int overflow and array bounds
+ *
+ * ============================================================
+ * EDGE CASES
+ * ============================================================
+ * - N = 0 or 1
+ * - All elements the same
+ * - One large, many small  (e.g. 9 111111111111111)
+ * - One small, many large  (e.g. 1 999999999999999)
+ *
+ * ============================================================
+ * FAILSAFE APPROACHES
+ * ============================================================
+ * - Perform updates before querying (e.g. join overlapping intervals first)
+ *
+ * ============================================================
+ * WHEN STUCK
+ * ============================================================
+ * - Write stuff down
+ * - Rewrite as equations
+ * - Draw a graph
+ * - Don't fixate on one approach
+ * - If addition with carrying bits is hard, try subtracting bit by bit (no carries)
+ * ============================================================
  */
 
 int main()
