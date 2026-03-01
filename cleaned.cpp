@@ -514,6 +514,19 @@ int indub(const std::vector<T> &v, const T &x)
  * - Draw a graph
  * - Don't fixate on one approach
  * - If addition with carrying bits is hard, try subtracting bit by bit (no carries)
+ * - Try Binary Search on answer
+ * - Are you solving the wrong (a more complex) problem? REREAD problem & REREAD CONSTRAINTS
+ *    - Can you destroy a swathe of cases you need to check e.g. by checking to sqrt(N) only or something else in constraints
+ *
+ * ============================================================
+ * FOR GAME THEORY
+ * ============================================================
+ * - Think about frozen/terminal states and how if they are reached, game is decided forever
+ *    - Think whether one player (specially first player) can force this frozen/terminal state
+ * - Split cases by different types of inputs e.g. already sorted (a deciding factor mentioned in problem statement), >1 type of prime factor, only 1 type of prime factor
+ * - Use DP by going to an end state (once for each player winning state) and working your way backwards to the start state
+ * - Can you reduce the problem to a simpler one e.g. by changing numbers to prime factorizations
+ *
  * ============================================================
  */
 
