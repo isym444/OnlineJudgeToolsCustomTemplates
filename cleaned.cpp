@@ -528,6 +528,15 @@ int indub(const std::vector<T> &v, const T &x)
  * - Can you reduce the problem to a simpler one e.g. by changing numbers to prime factorizations
  *
  * ============================================================
+ * DP IDEAS
+ * ============================================================
+ * - Binary Splitting:
+ *    - When one item type can be taken up to C times, split that count into powers of 2: 1,2,4,...,remainder
+ *    - so every allowed count is still representable, but the DP only processes O(log C) bundles.
+ *    - work backwards to don't over-take items
+ *    - dp[x] = minimum number of items to take to sum to x
+ *    - dp[x] = min(dp[x], dp[x - sum_of_value_of_binary_power_of_items_taken] + binary_power_num_of_items_taken);
+ * ============================================================
  */
 
 int main()
