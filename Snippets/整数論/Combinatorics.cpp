@@ -61,6 +61,8 @@ mint choose(int n, int a)
 // Applicable when selecting items without replacement and where the order doesn't matter.
 mint choose(int n, int a)
 {
+    if (a < 0 || n < 0 || a > n)
+        return 0;
     mint x = 1, y = 1;
     rep(i, a)
     {
