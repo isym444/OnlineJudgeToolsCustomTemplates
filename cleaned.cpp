@@ -539,6 +539,10 @@ int indub(const std::vector<T> &v, const T &x)
  * ============================================================
  */
 
+/*
+  Naïve -> Optimize -> Binary search on answer -> Greedy/DP
+*/
+
 int main()
 {
   nyan;
